@@ -118,6 +118,14 @@ dp = Dispatcher()
 
 user_list = [574853103, 506687945, 960217500, 688971244]
 group_id = -1001719052220
+
+CANCEL_TEXTS = {"❌ Отмена", "❌ Bekor qilish", "❌ Cancel"}
+
+
+def is_cancel_text(text: str | None) -> bool:
+    if not text:
+        return False
+    return text in CANCEL_TEXTS
 # dp = Dispatcher(storage=RedisStorage())
 
 
@@ -1274,7 +1282,7 @@ async def show_main_menu(message: types.Message, state: FSMContext) -> None:
         )
 
 
-@dp.message(F.text == __("❌ Отмена"))
+@dp.message(F.text.in_(CANCEL_TEXTS))
 async def check_id(message: types.Message, state: FSMContext) -> None:
     await show_main_menu(message, state)
 
@@ -2433,7 +2441,7 @@ def build_tariff_reply_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
 
 @dp.message(TariffUserState.select_from_country, F.text)
 async def user_select_tariff_from_country(message: Message, state: FSMContext):
-    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+    if is_cancel_text(message.text):
         await state.clear()
         await show_main_menu(message, state)
         return
@@ -2474,7 +2482,7 @@ async def show_tariff_to_countries_reply(
 
 @dp.message(TariffUserState.select_to_country, F.text)
 async def user_select_tariff_to_country(message: Message, state: FSMContext):
-    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+    if is_cancel_text(message.text):
         await state.clear()
         await show_main_menu(message, state)
         return
