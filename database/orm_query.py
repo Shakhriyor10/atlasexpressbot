@@ -10,6 +10,7 @@ from database.models import (
     Number,
     State,
     Tariff,
+    TariffCategory,
     User,
 )
 
@@ -178,6 +179,18 @@ async def get_tariff_from_countries(session: AsyncSession):
     return result.scalars().all()
 
 
+async def get_all_tariff_countries(session: AsyncSession):
+    stmt = select(Country).order_by(Country.name_ru)
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_all_tariff_categories(session: AsyncSession):
+    stmt = select(TariffCategory).order_by(TariffCategory.name_ru)
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
 async def get_tariff_to_countries(session: AsyncSession, from_country_id: int):
     stmt = (
         select(Country)
@@ -222,6 +235,53 @@ async def get_tariff_by_id(session: AsyncSession, tariff_id: int):
     )
     result = await session.execute(stmt)
     return result.scalars().first()
+
+
+async def orm_add_tariff_country(
+    session: AsyncSession,
+    code: str,
+    name_ru: str,
+    name_en: str,
+    name_uz: str,
+):
+    country = Country(code=code, name_ru=name_ru, name_en=name_en, name_uz=name_uz)
+    session.add(country)
+    await session.commit()
+
+
+async def orm_add_tariff_category(
+    session: AsyncSession,
+    code: str,
+    name_ru: str,
+    name_en: str,
+    name_uz: str,
+):
+    category = TariffCategory(code=code, name_ru=name_ru, name_en=name_en, name_uz=name_uz)
+    session.add(category)
+    await session.commit()
+
+
+async def orm_add_tariff(
+    session: AsyncSession,
+    from_country_id: int,
+    to_country_id: int,
+    category_id: int,
+    price: str,
+    delivery_text_ru: str,
+    delivery_text_en: str,
+    delivery_text_uz: str,
+):
+    tariff = Tariff(
+        from_country_id=from_country_id,
+        to_country_id=to_country_id,
+        category_id=category_id,
+        price=price,
+        delivery_text_ru=delivery_text_ru,
+        delivery_text_en=delivery_text_en,
+        delivery_text_uz=delivery_text_uz,
+    )
+    session.add(tariff)
+    await session.commit()
 
 
 # изменение
