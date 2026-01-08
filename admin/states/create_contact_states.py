@@ -18,10 +18,15 @@ class TariffAdminState(StatesGroup):
     select_from_country = State()
     select_to_country = State()
     select_category = State()
-    price = State()
+    price_ru = State()
+    price_en = State()
+    price_uz = State()
     delivery_ru = State()
     delivery_en = State()
     delivery_uz = State()
+    description_ru = State()
+    description_en = State()
+    description_uz = State()
 
 
 class ChoicesKeyboardAddContact(StrEnum):
@@ -45,5 +50,4 @@ admin_example = {
     "help_create_ll": "(пример:41.285277,69.262946)",
     "help_create_number": "(пример:+998912222222,+998913333333)",
 }
-
 
