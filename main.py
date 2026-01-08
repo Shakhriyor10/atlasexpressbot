@@ -2039,6 +2039,16 @@ def get_localized_delivery_text(obj, lang: str) -> str:
     return getattr(obj, f"delivery_text_{lang}", obj.delivery_text_ru)
 
 
+def get_localized_price_text(obj, lang: str) -> str:
+    """Получает локализованную цену тарифа на основе выбранного языка."""
+    return getattr(obj, f"price_{lang}", None) or obj.price
+
+
+def get_localized_description_text(obj, lang: str) -> str:
+    """Получает локализованное описание тарифа на основе выбранного языка."""
+    return getattr(obj, f"description_{lang}", None) or ""
+
+
 class CountryCallback(CallbackData, prefix="country"):
     id: int
 
@@ -2490,7 +2500,7 @@ async def user_select_tariff_to_country(message: Message, state: FSMContext):
             f"{get_localized_name(tariff.to_country, lang)}"
         )
         category = get_localized_name(tariff.category, lang)
-        price = tariff.price
+        price = get_localized_price_text(tariff, lang)
         delivery_text = get_localized_delivery_text(tariff, lang)
 
         text = f"{title}\n{category}\n{price}\n{delivery_text}\n"
@@ -2635,7 +2645,7 @@ async def show_tariffs_for_route(
             f"{get_localized_name(tariff.to_country, lang)}"
         )
         category = get_localized_name(tariff.category, lang)
-        price = tariff.price
+        price = get_localized_price_text(tariff, lang)
         delivery_text = get_localized_delivery_text(tariff, lang)
 
         text = f"{title}\n{category}\n{price}\n{delivery_text}\n"
@@ -2657,8 +2667,11 @@ async def show_tariff_detail(
         tariff = await get_tariff_by_id(session, callback_data.id)
 
     if tariff:
-        delivery_text = get_localized_delivery_text(tariff, lang)
-        await callback.message.answer(delivery_text)
+        description_text = get_localized_description_text(tariff, lang)
+        if description_text:
+            await callback.message.answer(description_text)
+        else:
+            await callback.message.answer(_("Описание тарифа пока недоступно."))
     else:
         await callback.message.answer(_("Тарифы для выбранного направления пока отсутствуют."))
     await callback.answer()
@@ -2928,17 +2941,43 @@ async def admin_select_category(
         await callback.answer("Нет доступа", show_alert=True)
         return
     await state.update_data(category_id=callback_data.id)
-    await state.set_state(TariffAdminState.price)
-    await callback.message.answer("Введите цену тарифа (например: 6.99$ за кг):")
+    await state.set_state(TariffAdminState.price_ru)
+    await callback.message.answer(
+        "Введите цену тарифа на русском (например: Цена: 20.0$ за 1кг (Минимум: 1кг)):"
+    )
     await callback.answer()
 
 
-@dp.message(TariffAdminState.price, F.text)
-async def admin_tariff_price(message: Message, state: FSMContext):
+@dp.message(TariffAdminState.price_ru, F.text)
+async def admin_tariff_price_ru(message: Message, state: FSMContext):
     if not is_admin_user(message.from_user.id):
         await message.answer("Нет доступа")
         return
-    await state.update_data(price=message.text.strip())
+    await state.update_data(price_ru=message.text.strip())
+    await state.set_state(TariffAdminState.price_en)
+    await message.answer(
+        "Введите цену тарифа на английском (например: Price: 20.0$ per 1kg (Minimum: 1kg)):"
+    )
+
+
+@dp.message(TariffAdminState.price_en, F.text)
+async def admin_tariff_price_en(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    await state.update_data(price_en=message.text.strip())
+    await state.set_state(TariffAdminState.price_uz)
+    await message.answer(
+        "Введите цену тарифа на узбекском (например: Narx: 20.0$ 1 kg uchun (Minimum: 1 kg)):"
+    )
+
+
+@dp.message(TariffAdminState.price_uz, F.text)
+async def admin_tariff_price_uz(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    await state.update_data(price_uz=message.text.strip())
     await state.set_state(TariffAdminState.delivery_ru)
     await message.answer(
         "Введите срок доставки на русском (например: Доставка в течение: 2-10 дней со дня отгрузки):"
@@ -2974,8 +3013,44 @@ async def admin_tariff_delivery_uz(message: Message, state: FSMContext):
     if not is_admin_user(message.from_user.id):
         await message.answer("Нет доступа")
         return
-    data = await state.get_data()
     await state.update_data(delivery_text_uz=message.text.strip())
+    await state.set_state(TariffAdminState.description_ru)
+    await message.answer(
+        "Введите описание тарифа на русском (будет показано в «Подробнее»):"
+    )
+
+
+@dp.message(TariffAdminState.description_ru, F.text)
+async def admin_tariff_description_ru(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    await state.update_data(description_ru=message.text.strip())
+    await state.set_state(TariffAdminState.description_en)
+    await message.answer(
+        "Введите описание тарифа на английском (будет показано в «Подробнее»):"
+    )
+
+
+@dp.message(TariffAdminState.description_en, F.text)
+async def admin_tariff_description_en(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    await state.update_data(description_en=message.text.strip())
+    await state.set_state(TariffAdminState.description_uz)
+    await message.answer(
+        "Введите описание тарифа на узбекском (будет показано в «Подробнее»):"
+    )
+
+
+@dp.message(TariffAdminState.description_uz, F.text)
+async def admin_tariff_description_uz(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    data = await state.get_data()
+    await state.update_data(description_uz=message.text.strip())
 
     async with session_maker() as session:
         await orm_add_tariff(
@@ -2983,10 +3058,15 @@ async def admin_tariff_delivery_uz(message: Message, state: FSMContext):
             from_country_id=data["from_country_id"],
             to_country_id=data["to_country_id"],
             category_id=data["category_id"],
-            price=data["price"],
+            price_ru=data["price_ru"],
+            price_en=data["price_en"],
+            price_uz=data["price_uz"],
             delivery_text_ru=data["delivery_text_ru"],
             delivery_text_en=data["delivery_text_en"],
-            delivery_text_uz=message.text.strip(),
+            delivery_text_uz=data["delivery_text_uz"],
+            description_ru=data["description_ru"],
+            description_en=data["description_en"],
+            description_uz=message.text.strip(),
         )
 
     await state.clear()
