@@ -2604,8 +2604,11 @@ async def tariff_admin_actions(
     await callback.answer()
 
 
-@dp.message(TariffAdminState.country, IsAdmin(), F.text)
+@dp.message(TariffAdminState.country, F.text)
 async def tariff_admin_add_country(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     try:
         code, name_ru, name_en, name_uz = [part.strip() for part in message.text.split(",")]
     except ValueError:
@@ -2619,8 +2622,11 @@ async def tariff_admin_add_country(message: Message, state: FSMContext):
     await message.answer("Страна добавлена ✅", reply_markup=build_admin_tariff_menu())
 
 
-@dp.message(TariffAdminState.category, IsAdmin(), F.text)
+@dp.message(TariffAdminState.category, F.text)
 async def tariff_admin_add_category(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     try:
         code, name_ru, name_en, name_uz = [part.strip() for part in message.text.split(",")]
     except ValueError:
@@ -2805,29 +2811,41 @@ async def admin_select_category(
     await callback.answer()
 
 
-@dp.message(TariffAdminState.price, IsAdmin(), F.text)
+@dp.message(TariffAdminState.price, F.text)
 async def admin_tariff_price(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     await state.update_data(price=message.text.strip())
     await state.set_state(TariffAdminState.delivery_ru)
     await message.answer("Введите текст доставки на русском:")
 
 
-@dp.message(TariffAdminState.delivery_ru, IsAdmin(), F.text)
+@dp.message(TariffAdminState.delivery_ru, F.text)
 async def admin_tariff_delivery_ru(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     await state.update_data(delivery_text_ru=message.text.strip())
     await state.set_state(TariffAdminState.delivery_en)
     await message.answer("Введите текст доставки на английском:")
 
 
-@dp.message(TariffAdminState.delivery_en, IsAdmin(), F.text)
+@dp.message(TariffAdminState.delivery_en, F.text)
 async def admin_tariff_delivery_en(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     await state.update_data(delivery_text_en=message.text.strip())
     await state.set_state(TariffAdminState.delivery_uz)
     await message.answer("Введите текст доставки на узбекском:")
 
 
-@dp.message(TariffAdminState.delivery_uz, IsAdmin(), F.text)
+@dp.message(TariffAdminState.delivery_uz, F.text)
 async def admin_tariff_delivery_uz(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
     data = await state.get_data()
     await state.update_data(delivery_text_uz=message.text.strip())
 
