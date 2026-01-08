@@ -118,6 +118,14 @@ dp = Dispatcher()
 
 user_list = [574853103, 506687945, 960217500, 688971244]
 group_id = -1001719052220
+
+CANCEL_TEXTS = {"❌ Отмена", "❌ Bekor qilish", "❌ Cancel"}
+
+
+def is_cancel_text(text: str | None) -> bool:
+    if not text:
+        return False
+    return text in CANCEL_TEXTS
 # dp = Dispatcher(storage=RedisStorage())
 
 
@@ -1215,8 +1223,11 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
     # response = requests.post('http://178.20.45.210:8011/api/v1/message/', data=data)
 
 
-@dp.message(F.text == __("❌ Отмена"))
-async def check_id(message: types.Message, state: FSMContext) -> None:
+async def show_main_menu(
+    message: types.Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+) -> None:
+    lang = await get_user_language(message.from_user.id)
+    await i18n_middleware.set_locale(state=state, locale=lang)
     await state.set_state(Menu.main_menu)
     if message.from_user.id in user_list:
         await message.answer(
@@ -1237,10 +1248,12 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
                     ],
                     [types.KeyboardButton(text=_("Поддержка"))],
                     [types.KeyboardButton(text=_("Соц сети"))],
-                    [KeyboardButton(  # новая кнопка
-                        text=_("Наш сайт"),
-                        web_app=WebAppInfo(url="https://atlasexpress.uz/")
-                    )]
+                    [
+                        KeyboardButton(  # новая кнопка
+                            text=_("Наш сайт"),
+                            web_app=WebAppInfo(url="https://atlasexpress.uz/"),
+                        )
+                    ],
                 ],
                 resize_keyboard=True,
             ),
@@ -1261,14 +1274,23 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
                     [types.KeyboardButton(text=_("Информация"))],
                     [types.KeyboardButton(text=_("Поддержка"))],
                     [types.KeyboardButton(text=_("Соц сети"))],
-                    [KeyboardButton(  # новая кнопка
-                        text=_("Наш сайт"),
-                        web_app=WebAppInfo(url="https://atlasexpress.uz/")
-                    )]
+                    [
+                        KeyboardButton(  # новая кнопка
+                            text=_("Наш сайт"),
+                            web_app=WebAppInfo(url="https://atlasexpress.uz/"),
+                        )
+                    ],
                 ],
                 resize_keyboard=True,
             ),
         )
+
+
+@dp.message(F.text.in_(CANCEL_TEXTS))
+async def check_id(
+    message: types.Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+) -> None:
+    await show_main_menu(message, state, i18n_middleware)
 
 
 @dp.message(Menu.check_id)
@@ -2424,9 +2446,12 @@ def build_tariff_reply_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
 
 
 @dp.message(TariffUserState.select_from_country, F.text)
-async def user_select_tariff_from_country(message: Message, state: FSMContext):
-    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+async def user_select_tariff_from_country(
+    message: Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+):
+    if is_cancel_text(message.text):
         await state.clear()
+        await show_main_menu(message, state, i18n_middleware)
         return
 
     data = await state.get_data()
@@ -2464,9 +2489,12 @@ async def show_tariff_to_countries_reply(
 
 
 @dp.message(TariffUserState.select_to_country, F.text)
-async def user_select_tariff_to_country(message: Message, state: FSMContext):
-    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+async def user_select_tariff_to_country(
+    message: Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+):
+    if is_cancel_text(message.text):
         await state.clear()
+        await show_main_menu(message, state, i18n_middleware)
         return
 
     data = await state.get_data()
