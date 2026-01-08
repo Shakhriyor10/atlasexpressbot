@@ -354,6 +354,14 @@ msgstr "→ 🇹🇯TJK"
 msgid "trf-oth-cn"
 msgstr "Other countries"
 
+#: main.py:2292
+msgid "Тарифы пока недоступны."
+msgstr "Tariffs are not available yet."
+
+#: main.py:2363
+msgid "Тарифы для выбранного направления пока отсутствуют."
+msgstr "Tariffs for the selected route are not available yet."
+
 #: main.py:2325
 msgid "Наши социальные сети"
 msgstr "Our social networks"
@@ -883,4 +891,3 @@ msgstr "Message from support!"
 
 #~ msgid "Выберите страну отправителя:"
 #~ msgstr ""
-

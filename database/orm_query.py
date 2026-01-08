@@ -1,8 +1,18 @@
 from sqlalchemy import select, update, desc
+from sqlalchemy.orm import selectinload
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.models import City, District, Number, State, User
+from database.models import (
+    City,
+    Country,
+    District,
+    Number,
+    State,
+    Tariff,
+    TariffCategory,
+    User,
+)
 
 
 # Добавление записей
@@ -156,6 +166,122 @@ async def get_language(session: AsyncSession, user_id: int):
     stmt = select(User).where(User.user_id == user_id)
     result = await session.execute(stmt)
     return result.scalars().first()
+
+
+async def get_tariff_from_countries(session: AsyncSession):
+    stmt = (
+        select(Country)
+        .join(Tariff, Tariff.from_country_id == Country.id)
+        .distinct()
+        .order_by(Country.name_ru)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_all_tariff_countries(session: AsyncSession):
+    stmt = select(Country).order_by(Country.name_ru)
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_all_tariff_categories(session: AsyncSession):
+    stmt = select(TariffCategory).order_by(TariffCategory.name_ru)
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariff_to_countries(session: AsyncSession, from_country_id: int):
+    stmt = (
+        select(Country)
+        .join(Tariff, Tariff.to_country_id == Country.id)
+        .where(Tariff.from_country_id == from_country_id)
+        .distinct()
+        .order_by(Country.name_ru)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariffs_for_route(
+    session: AsyncSession, from_country_id: int, to_country_id: int
+):
+    stmt = (
+        select(Tariff)
+        .where(
+            Tariff.from_country_id == from_country_id,
+            Tariff.to_country_id == to_country_id,
+        )
+        .options(
+            selectinload(Tariff.category),
+            selectinload(Tariff.from_country),
+            selectinload(Tariff.to_country),
+        )
+        .order_by(Tariff.id)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariff_by_id(session: AsyncSession, tariff_id: int):
+    stmt = (
+        select(Tariff)
+        .where(Tariff.id == tariff_id)
+        .options(
+            selectinload(Tariff.category),
+            selectinload(Tariff.from_country),
+            selectinload(Tariff.to_country),
+        )
+    )
+    result = await session.execute(stmt)
+    return result.scalars().first()
+
+
+async def orm_add_tariff_country(
+    session: AsyncSession,
+    code: str,
+    name_ru: str,
+    name_en: str,
+    name_uz: str,
+):
+    country = Country(code=code, name_ru=name_ru, name_en=name_en, name_uz=name_uz)
+    session.add(country)
+    await session.commit()
+
+
+async def orm_add_tariff_category(
+    session: AsyncSession,
+    code: str,
+    name_ru: str,
+    name_en: str,
+    name_uz: str,
+):
+    category = TariffCategory(code=code, name_ru=name_ru, name_en=name_en, name_uz=name_uz)
+    session.add(category)
+    await session.commit()
+
+
+async def orm_add_tariff(
+    session: AsyncSession,
+    from_country_id: int,
+    to_country_id: int,
+    category_id: int,
+    price: str,
+    delivery_text_ru: str,
+    delivery_text_en: str,
+    delivery_text_uz: str,
+):
+    tariff = Tariff(
+        from_country_id=from_country_id,
+        to_country_id=to_country_id,
+        category_id=category_id,
+        price=price,
+        delivery_text_ru=delivery_text_ru,
+        delivery_text_en=delivery_text_en,
+        delivery_text_uz=delivery_text_uz,
+    )
+    session.add(tariff)
+    await session.commit()
 
 
 # изменение
