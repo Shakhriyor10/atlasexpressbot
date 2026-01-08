@@ -12,12 +12,23 @@ class CreateContactState(StatesGroup):
     contacts = State()
 
 
-    
+class TariffAdminState(StatesGroup):
+    country = State()
+    category = State()
+    select_from_country = State()
+    select_to_country = State()
+    select_category = State()
+    price = State()
+    delivery_ru = State()
+    delivery_en = State()
+    delivery_uz = State()
+
 
 class ChoicesKeyboardAddContact(StrEnum):
     add_contacts = "Добавления контактов"
     send_news = "Рассылка новостей пользователям"
     user_contacts = "Обзор контактов"
+    manage_tariffs = "Управление тарифами"
     back = "🔙 Назад"
 
 
@@ -34,7 +45,5 @@ admin_example = {
     "help_create_ll": "(пример:41.285277,69.262946)",
     "help_create_number": "(пример:+998912222222,+998913333333)",
 }
-
-
 
 
