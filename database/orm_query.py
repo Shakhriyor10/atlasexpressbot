@@ -1,8 +1,17 @@
 from sqlalchemy import select, update, desc
+from sqlalchemy.orm import selectinload
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.models import City, District, Number, State, User
+from database.models import (
+    City,
+    Country,
+    District,
+    Number,
+    State,
+    Tariff,
+    User,
+)
 
 
 # Добавление записей
@@ -154,6 +163,63 @@ async def get_number_by_id(session: AsyncSession, number_id: int):
 
 async def get_language(session: AsyncSession, user_id: int):
     stmt = select(User).where(User.user_id == user_id)
+    result = await session.execute(stmt)
+    return result.scalars().first()
+
+
+async def get_tariff_from_countries(session: AsyncSession):
+    stmt = (
+        select(Country)
+        .join(Tariff, Tariff.from_country_id == Country.id)
+        .distinct()
+        .order_by(Country.name_ru)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariff_to_countries(session: AsyncSession, from_country_id: int):
+    stmt = (
+        select(Country)
+        .join(Tariff, Tariff.to_country_id == Country.id)
+        .where(Tariff.from_country_id == from_country_id)
+        .distinct()
+        .order_by(Country.name_ru)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariffs_for_route(
+    session: AsyncSession, from_country_id: int, to_country_id: int
+):
+    stmt = (
+        select(Tariff)
+        .where(
+            Tariff.from_country_id == from_country_id,
+            Tariff.to_country_id == to_country_id,
+        )
+        .options(
+            selectinload(Tariff.category),
+            selectinload(Tariff.from_country),
+            selectinload(Tariff.to_country),
+        )
+        .order_by(Tariff.id)
+    )
+    result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def get_tariff_by_id(session: AsyncSession, tariff_id: int):
+    stmt = (
+        select(Tariff)
+        .where(Tariff.id == tariff_id)
+        .options(
+            selectinload(Tariff.category),
+            selectinload(Tariff.from_country),
+            selectinload(Tariff.to_country),
+        )
+    )
     result = await session.execute(stmt)
     return result.scalars().first()
 

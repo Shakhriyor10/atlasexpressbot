@@ -83,6 +83,10 @@ from database.orm_query import (
     get_country_by_id,
     get_district_by_id,
     get_language,
+    get_tariff_from_countries,
+    get_tariff_to_countries,
+    get_tariff_by_id,
+    get_tariffs_for_route,
     get_numbers_by_district_id,
     orm_add_city,
     orm_add_country,
@@ -1995,6 +1999,11 @@ def get_localized_name(obj, lang: str) -> str:
     return getattr(obj, f"name_{lang}", obj.name_ru)  # Русский как запасной вариант
 
 
+def get_localized_delivery_text(obj, lang: str) -> str:
+    """Получает локализованный текст доставки на основе выбранного языка."""
+    return getattr(obj, f"delivery_text_{lang}", obj.delivery_text_ru)
+
+
 class CountryCallback(CallbackData, prefix="country"):
     id: int
 
@@ -2014,6 +2023,28 @@ class CountryPageCallback(CallbackData, prefix="country_page"):
 class CityPageCallback(CallbackData, prefix="city_page"):
     country_id: int
     page: int
+
+
+class TariffFromCountryCallback(CallbackData, prefix="tariff_from"):
+    id: int
+
+
+class TariffFromPageCallback(CallbackData, prefix="tariff_from_page"):
+    page: int
+
+
+class TariffToCountryCallback(CallbackData, prefix="tariff_to"):
+    from_country_id: int
+    to_country_id: int
+
+
+class TariffToPageCallback(CallbackData, prefix="tariff_to_page"):
+    from_country_id: int
+    page: int
+
+
+class TariffDetailCallback(CallbackData, prefix="tariff_detail"):
+    id: int
 
 
 async def get_user_language(user_id: int) -> str:
@@ -2269,20 +2300,11 @@ async def rates(message: types.Message):
     await message.answer(
         _("sel_traffic"),
         reply_markup=types.ReplyKeyboardMarkup(
-            keyboard=[
-                [
-                    types.KeyboardButton(text=_("send-us")),
-                    types.KeyboardButton(text=_("send-uz")),
-                ],
-                [
-                    types.KeyboardButton(text=_("send-canada")),
-                    # types.KeyboardButton(text=_("send-tjk")),
-                ],
-                [types.KeyboardButton(text=_("❌ Отмена"))],
-            ],
+            keyboard=[[types.KeyboardButton(text=_("❌ Отмена"))]],
             resize_keyboard=True,
         ),
     )
+    await show_tariff_from_countries(message, page=0)
     data = {
         "name": message.from_user.first_name,
         "username": message.from_user.username,
@@ -2292,6 +2314,167 @@ async def rates(message: types.Message):
         "status": True,
     }
     # response = requests.post('http://178.20.45.210:8011/api/v1/message/', data=data)
+
+
+async def show_tariff_from_countries(message_or_callback, page: int):
+    user_id = message_or_callback.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        countries = await get_tariff_from_countries(session)
+
+    if not countries:
+        if isinstance(message_or_callback, Message):
+            await message_or_callback.answer(_("Тарифы пока недоступны."))
+        else:
+            await message_or_callback.message.edit_text(_("Тарифы пока недоступны."))
+        return
+
+    paginator = Paginator(countries, page)
+    countries_slice = paginator.get_current_page_items()
+
+    builder = InlineKeyboardBuilder()
+    for country in countries_slice:
+        builder.button(
+            text=get_localized_name(country, lang),
+            callback_data=TariffFromCountryCallback(id=country.id).pack(),
+        )
+
+    pagination_buttons = paginator.get_pagination_buttons(TariffFromPageCallback)
+    if pagination_buttons:
+        builder.row(*pagination_buttons)
+
+    builder.adjust(2)
+
+    text = line + "\n" + _("sel_traffic")
+    if isinstance(message_or_callback, Message):
+        await message_or_callback.answer(
+            text, reply_markup=builder.as_markup(resize_keyboard=True)
+        )
+    else:
+        await message_or_callback.message.edit_text(
+            text, reply_markup=builder.as_markup(resize_keyboard=True)
+        )
+
+
+@dp.callback_query(TariffFromCountryCallback.filter())
+async def show_tariff_to_countries(
+    callback: CallbackQuery, callback_data: TariffFromCountryCallback
+):
+    await show_tariff_to_countries_page(callback, callback_data.id, page=0)
+
+
+@dp.callback_query(TariffFromPageCallback.filter())
+async def paginate_tariff_from_countries(
+    callback: CallbackQuery, callback_data: TariffFromPageCallback
+):
+    await show_tariff_from_countries(callback, page=callback_data.page)
+
+
+async def show_tariff_to_countries_page(
+    callback: CallbackQuery, from_country_id: int, page: int
+):
+    user_id = callback.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        countries = await get_tariff_to_countries(session, from_country_id)
+
+    if not countries:
+        await callback.message.edit_text(_("Тарифы пока недоступны."))
+        return
+
+    paginator = Paginator(countries, page)
+    countries_slice = paginator.get_current_page_items()
+
+    builder = InlineKeyboardBuilder()
+    for country in countries_slice:
+        builder.button(
+            text=get_localized_name(country, lang),
+            callback_data=TariffToCountryCallback(
+                from_country_id=from_country_id, to_country_id=country.id
+            ).pack(),
+        )
+
+    pagination_buttons = paginator.get_pagination_buttons(
+        lambda page: TariffToPageCallback(from_country_id=from_country_id, page=page)
+    )
+    if pagination_buttons:
+        builder.row(*pagination_buttons)
+
+    builder.adjust(2)
+    builder.row(
+        InlineKeyboardButton(
+            text=_("Назад"), callback_data=TariffFromPageCallback(page=0).pack()
+        )
+    )
+
+    await callback.message.edit_text(
+        text=(line + "\n" + _("sel_rec_coun")),
+        reply_markup=builder.as_markup(resize_keyboard=True),
+    )
+
+
+@dp.callback_query(TariffToPageCallback.filter())
+async def paginate_tariff_to_countries(
+    callback: CallbackQuery, callback_data: TariffToPageCallback
+):
+    await show_tariff_to_countries_page(
+        callback, callback_data.from_country_id, callback_data.page
+    )
+
+
+@dp.callback_query(TariffToCountryCallback.filter())
+async def show_tariffs_for_route(
+    callback: CallbackQuery, callback_data: TariffToCountryCallback
+):
+    user_id = callback.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        tariffs = await get_tariffs_for_route(
+            session, callback_data.from_country_id, callback_data.to_country_id
+        )
+
+    if not tariffs:
+        await callback.message.edit_text(_("Тарифы для выбранного направления пока отсутствуют."))
+        return
+
+    await callback.message.edit_reply_markup(reply_markup=None)
+    await callback.message.delete()
+
+    for tariff in tariffs:
+        title = (
+            f"{get_localized_name(tariff.from_country, lang)} → "
+            f"{get_localized_name(tariff.to_country, lang)}"
+        )
+        category = get_localized_name(tariff.category, lang)
+        price = tariff.price
+
+        text = f"{title}\n{category}\n{price}\n"
+        kb = InlineKeyboardBuilder()
+        kb.button(text=_("Подробнее"), callback_data=TariffDetailCallback(id=tariff.id).pack())
+        await callback.message.answer(text, reply_markup=kb.as_markup())
+
+    await callback.answer()
+
+
+@dp.callback_query(TariffDetailCallback.filter())
+async def show_tariff_detail(
+    callback: CallbackQuery, callback_data: TariffDetailCallback
+):
+    user_id = callback.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        tariff = await get_tariff_by_id(session, callback_data.id)
+
+    if tariff:
+        delivery_text = get_localized_delivery_text(tariff, lang)
+        await callback.message.answer(delivery_text)
+    else:
+        await callback.message.answer(_("Тарифы для выбранного направления пока отсутствуют."))
+    await callback.answer()
 
 
 @dp.message(F.text == __("send-us"))
