@@ -2491,8 +2491,9 @@ async def user_select_tariff_to_country(message: Message, state: FSMContext):
         )
         category = get_localized_name(tariff.category, lang)
         price = tariff.price
+        delivery_text = get_localized_delivery_text(tariff, lang)
 
-        text = f"{title}\n{category}\n{price}\n"
+        text = f"{title}\n{category}\n{price}\n{delivery_text}\n"
         kb = InlineKeyboardBuilder()
         kb.button(
             text=_("Подробнее"),
@@ -2635,8 +2636,9 @@ async def show_tariffs_for_route(
         )
         category = get_localized_name(tariff.category, lang)
         price = tariff.price
+        delivery_text = get_localized_delivery_text(tariff, lang)
 
-        text = f"{title}\n{category}\n{price}\n"
+        text = f"{title}\n{category}\n{price}\n{delivery_text}\n"
         kb = InlineKeyboardBuilder()
         kb.button(text=_("Подробнее"), callback_data=TariffDetailCallback(id=tariff.id).pack())
         await callback.message.answer(text, reply_markup=kb.as_markup())
@@ -2938,7 +2940,9 @@ async def admin_tariff_price(message: Message, state: FSMContext):
         return
     await state.update_data(price=message.text.strip())
     await state.set_state(TariffAdminState.delivery_ru)
-    await message.answer("Введите текст доставки на русском:")
+    await message.answer(
+        "Введите срок доставки на русском (например: Доставка в течение: 2-10 дней со дня отгрузки):"
+    )
 
 
 @dp.message(TariffAdminState.delivery_ru, F.text)
@@ -2948,7 +2952,9 @@ async def admin_tariff_delivery_ru(message: Message, state: FSMContext):
         return
     await state.update_data(delivery_text_ru=message.text.strip())
     await state.set_state(TariffAdminState.delivery_en)
-    await message.answer("Введите текст доставки на английском:")
+    await message.answer(
+        "Введите срок доставки на английском (например: Delivery time: 2-10 days from shipment date):"
+    )
 
 
 @dp.message(TariffAdminState.delivery_en, F.text)
@@ -2958,7 +2964,9 @@ async def admin_tariff_delivery_en(message: Message, state: FSMContext):
         return
     await state.update_data(delivery_text_en=message.text.strip())
     await state.set_state(TariffAdminState.delivery_uz)
-    await message.answer("Введите текст доставки на узбекском:")
+    await message.answer(
+        "Введите срок доставки на узбекском (например: Yetkazib berish muddati: 2-10 kun, jo'natish kunidan boshlab):"
+    )
 
 
 @dp.message(TariffAdminState.delivery_uz, F.text)
