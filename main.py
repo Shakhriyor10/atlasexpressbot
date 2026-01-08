@@ -1215,8 +1215,7 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
     # response = requests.post('http://178.20.45.210:8011/api/v1/message/', data=data)
 
 
-@dp.message(F.text == __("❌ Отмена"))
-async def check_id(message: types.Message, state: FSMContext) -> None:
+async def show_main_menu(message: types.Message, state: FSMContext) -> None:
     await state.set_state(Menu.main_menu)
     if message.from_user.id in user_list:
         await message.answer(
@@ -1237,10 +1236,12 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
                     ],
                     [types.KeyboardButton(text=_("Поддержка"))],
                     [types.KeyboardButton(text=_("Соц сети"))],
-                    [KeyboardButton(  # новая кнопка
-                        text=_("Наш сайт"),
-                        web_app=WebAppInfo(url="https://atlasexpress.uz/")
-                    )]
+                    [
+                        KeyboardButton(  # новая кнопка
+                            text=_("Наш сайт"),
+                            web_app=WebAppInfo(url="https://atlasexpress.uz/"),
+                        )
+                    ],
                 ],
                 resize_keyboard=True,
             ),
@@ -1261,14 +1262,21 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
                     [types.KeyboardButton(text=_("Информация"))],
                     [types.KeyboardButton(text=_("Поддержка"))],
                     [types.KeyboardButton(text=_("Соц сети"))],
-                    [KeyboardButton(  # новая кнопка
-                        text=_("Наш сайт"),
-                        web_app=WebAppInfo(url="https://atlasexpress.uz/")
-                    )]
+                    [
+                        KeyboardButton(  # новая кнопка
+                            text=_("Наш сайт"),
+                            web_app=WebAppInfo(url="https://atlasexpress.uz/"),
+                        )
+                    ],
                 ],
                 resize_keyboard=True,
             ),
         )
+
+
+@dp.message(F.text == __("❌ Отмена"))
+async def check_id(message: types.Message, state: FSMContext) -> None:
+    await show_main_menu(message, state)
 
 
 @dp.message(Menu.check_id)
@@ -2427,6 +2435,7 @@ def build_tariff_reply_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
 async def user_select_tariff_from_country(message: Message, state: FSMContext):
     if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
         await state.clear()
+        await show_main_menu(message, state)
         return
 
     data = await state.get_data()
@@ -2467,6 +2476,7 @@ async def show_tariff_to_countries_reply(
 async def user_select_tariff_to_country(message: Message, state: FSMContext):
     if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
         await state.clear()
+        await show_main_menu(message, state)
         return
 
     data = await state.get_data()
