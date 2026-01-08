@@ -147,6 +147,11 @@ class Menu(StatesGroup):
     send_all = State()
 
 
+class TariffUserState(StatesGroup):
+    select_from_country = State()
+    select_to_country = State()
+
+
 # Храним список админов
 admins_cache = set()
 line = "⠀" * 25
@@ -2354,22 +2359,24 @@ async def show_users(message: Message):
 
 
 @dp.message(F.text == __("📃 Тарифы"))
-async def rates(message: types.Message):
-    await message.answer(
-        _("sel_traffic"),
-        reply_markup=types.ReplyKeyboardMarkup(
-            keyboard=[[types.KeyboardButton(text=_("❌ Отмена"))]],
-            resize_keyboard=True,
-        ),
-    )
+async def rates(message: types.Message, state: FSMContext):
     if is_admin_user(message.from_user.id):
+        await message.answer(
+            _("sel_traffic"),
+            reply_markup=types.ReplyKeyboardMarkup(
+                keyboard=[[types.KeyboardButton(text=_("❌ Отмена"))]],
+                resize_keyboard=True,
+            ),
+        )
         kb = InlineKeyboardBuilder()
         kb.button(
             text="⚙️ Управление тарифами",
             callback_data=TariffAdminActionCallback(action="menu").pack(),
         )
         await message.answer("Админ: управление тарифами", reply_markup=kb.as_markup())
-    await show_tariff_from_countries(message, page=0)
+        await show_tariff_from_countries(message, page=0)
+    else:
+        await show_tariff_from_countries_reply(message, state)
     data = {
         "name": message.from_user.first_name,
         "username": message.from_user.username,
@@ -2379,6 +2386,128 @@ async def rates(message: types.Message):
         "status": True,
     }
     # response = requests.post('http://178.20.45.210:8011/api/v1/message/', data=data)
+
+
+async def show_tariff_from_countries_reply(message: Message, state: FSMContext):
+    user_id = message.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        countries = await get_tariff_from_countries(session)
+
+    if not countries:
+        await message.answer(_("Тарифы пока недоступны."))
+        return
+
+    from_map = {get_localized_name(country, lang): country.id for country in countries}
+    await message.answer(
+        _("sel_traffic"),
+        reply_markup=build_tariff_reply_keyboard(list(from_map.keys())),
+    )
+    await state.set_state(TariffUserState.select_from_country)
+    await state.update_data(tariff_from_map=from_map)
+
+
+def build_tariff_reply_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
+    keyboard = []
+    row = []
+    for item in items:
+        row.append(types.KeyboardButton(text=item))
+        if len(row) == 2:
+            keyboard.append(row)
+            row = []
+    if row:
+        keyboard.append(row)
+    keyboard.append([types.KeyboardButton(text=_("❌ Отмена"))])
+    return types.ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
+
+
+@dp.message(TariffUserState.select_from_country, F.text)
+async def user_select_tariff_from_country(message: Message, state: FSMContext):
+    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+        await state.clear()
+        return
+
+    data = await state.get_data()
+    from_map = data.get("tariff_from_map", {})
+    from_country_id = from_map.get(message.text)
+    if not from_country_id:
+        await message.answer(_("Пожалуйста, выберите корректное значение"))
+        return
+
+    await state.update_data(from_country_id=from_country_id)
+    await show_tariff_to_countries_reply(message, state, from_country_id)
+
+
+async def show_tariff_to_countries_reply(
+    message: Message, state: FSMContext, from_country_id: int
+):
+    user_id = message.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        countries = await get_tariff_to_countries(session, from_country_id)
+
+    if not countries:
+        await message.answer(_("Тарифы пока недоступны."))
+        await state.clear()
+        return
+
+    to_map = {get_localized_name(country, lang): country.id for country in countries}
+    await message.answer(
+        _("sel_rec_coun"),
+        reply_markup=build_tariff_reply_keyboard(list(to_map.keys())),
+    )
+    await state.set_state(TariffUserState.select_to_country)
+    await state.update_data(tariff_to_map=to_map)
+
+
+@dp.message(TariffUserState.select_to_country, F.text)
+async def user_select_tariff_to_country(message: Message, state: FSMContext):
+    if message.text == _("❌ Отмена") or message.text == "❌ Отмена":
+        await state.clear()
+        return
+
+    data = await state.get_data()
+    to_map = data.get("tariff_to_map", {})
+    to_country_id = to_map.get(message.text)
+    if not to_country_id:
+        await message.answer(_("Пожалуйста, выберите корректное значение"))
+        return
+
+    from_country_id = data.get("from_country_id")
+    if not from_country_id:
+        await message.answer(_("Пожалуйста, выберите корректное значение"))
+        return
+
+    user_id = message.from_user.id
+    lang = await get_user_language(user_id)
+
+    async with session_maker() as session:
+        tariffs = await get_tariffs_for_route(session, from_country_id, to_country_id)
+
+    if not tariffs:
+        await message.answer(_("Тарифы для выбранного направления пока отсутствуют."))
+        await state.clear()
+        return
+
+    await state.clear()
+
+    for tariff in tariffs:
+        title = (
+            f"{get_localized_name(tariff.from_country, lang)} → "
+            f"{get_localized_name(tariff.to_country, lang)}"
+        )
+        category = get_localized_name(tariff.category, lang)
+        price = tariff.price
+
+        text = f"{title}\n{category}\n{price}\n"
+        kb = InlineKeyboardBuilder()
+        kb.button(
+            text=_("Подробнее"),
+            callback_data=TariffDetailCallback(id=tariff.id).pack(),
+        )
+        await message.answer(text, reply_markup=kb.as_markup())
 
 
 async def show_tariff_from_countries(message_or_callback, page: int):
