@@ -1223,7 +1223,11 @@ async def check_id(message: types.Message, state: FSMContext) -> None:
     # response = requests.post('http://178.20.45.210:8011/api/v1/message/', data=data)
 
 
-async def show_main_menu(message: types.Message, state: FSMContext) -> None:
+async def show_main_menu(
+    message: types.Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+) -> None:
+    lang = await get_user_language(message.from_user.id)
+    await i18n_middleware.set_locale(state=state, locale=lang)
     await state.set_state(Menu.main_menu)
     if message.from_user.id in user_list:
         await message.answer(
@@ -1283,8 +1287,10 @@ async def show_main_menu(message: types.Message, state: FSMContext) -> None:
 
 
 @dp.message(F.text.in_(CANCEL_TEXTS))
-async def check_id(message: types.Message, state: FSMContext) -> None:
-    await show_main_menu(message, state)
+async def check_id(
+    message: types.Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+) -> None:
+    await show_main_menu(message, state, i18n_middleware)
 
 
 @dp.message(Menu.check_id)
@@ -2440,10 +2446,12 @@ def build_tariff_reply_keyboard(items: list[str]) -> ReplyKeyboardMarkup:
 
 
 @dp.message(TariffUserState.select_from_country, F.text)
-async def user_select_tariff_from_country(message: Message, state: FSMContext):
+async def user_select_tariff_from_country(
+    message: Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+):
     if is_cancel_text(message.text):
         await state.clear()
-        await show_main_menu(message, state)
+        await show_main_menu(message, state, i18n_middleware)
         return
 
     data = await state.get_data()
@@ -2481,10 +2489,12 @@ async def show_tariff_to_countries_reply(
 
 
 @dp.message(TariffUserState.select_to_country, F.text)
-async def user_select_tariff_to_country(message: Message, state: FSMContext):
+async def user_select_tariff_to_country(
+    message: Message, state: FSMContext, i18n_middleware: FSMI18nMiddleware
+):
     if is_cancel_text(message.text):
         await state.clear()
-        await show_main_menu(message, state)
+        await show_main_menu(message, state, i18n_middleware)
         return
 
     data = await state.get_data()
