@@ -18,6 +18,8 @@ class TariffAdminState(StatesGroup):
     select_from_country = State()
     select_to_country = State()
     select_category = State()
+    manage_select_from_country = State()
+    manage_select_to_country = State()
     price_ru = State()
     price_en = State()
     price_uz = State()
@@ -27,6 +29,7 @@ class TariffAdminState(StatesGroup):
     description_ru = State()
     description_en = State()
     description_uz = State()
+    position = State()
 
 
 class ChoicesKeyboardAddContact(StrEnum):

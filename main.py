@@ -102,6 +102,8 @@ from database.orm_query import (
     orm_delete_city,
     orm_delete_country,
     orm_delete_district,
+    orm_delete_tariff,
+    orm_update_tariff_position,
     orm_update_city,
     orm_update_country,
     orm_update_district_location,
@@ -216,6 +218,14 @@ async def manage_tariffs(message: Message, state: FSMContext):
     kb.button(
         text="➕ Добавить тариф",
         callback_data=TariffAdminActionCallback(action="add_tariff").pack(),
+    )
+    kb.button(
+        text="✏️ Изменить позицию тарифа",
+        callback_data=TariffAdminActionCallback(action="edit_tariff_position").pack(),
+    )
+    kb.button(
+        text="🗑️ Удалить тариф",
+        callback_data=TariffAdminActionCallback(action="delete_tariff").pack(),
     )
     kb.adjust(1)
     await message.answer("Управление тарифами:", reply_markup=kb.as_markup())
@@ -2142,6 +2152,27 @@ class TariffAdminCategoryPageCallback(CallbackData, prefix="tariff_admin_categor
     page: int
 
 
+class TariffAdminManageFromCountryCallback(CallbackData, prefix="tariff_admin_manage_from"):
+    id: int
+
+
+class TariffAdminManageFromPageCallback(CallbackData, prefix="tariff_admin_manage_from_page"):
+    page: int
+
+
+class TariffAdminManageToCountryCallback(CallbackData, prefix="tariff_admin_manage_to"):
+    id: int
+
+
+class TariffAdminManageToPageCallback(CallbackData, prefix="tariff_admin_manage_to_page"):
+    page: int
+
+
+class TariffAdminManageTariffCallback(CallbackData, prefix="tariff_admin_manage_tariff"):
+    id: int
+    action: str
+
+
 async def get_user_language(user_id: int) -> str:
     async with session_maker() as session:
         user = await get_language(session, user_id)
@@ -2719,6 +2750,14 @@ def build_admin_tariff_menu() -> InlineKeyboardMarkup:
         text="➕ Добавить тариф",
         callback_data=TariffAdminActionCallback(action="add_tariff").pack(),
     )
+    kb.button(
+        text="✏️ Изменить позицию тарифа",
+        callback_data=TariffAdminActionCallback(action="edit_tariff_position").pack(),
+    )
+    kb.button(
+        text="🗑️ Удалить тариф",
+        callback_data=TariffAdminActionCallback(action="delete_tariff").pack(),
+    )
     kb.adjust(1)
     return kb.as_markup()
 
@@ -2761,6 +2800,14 @@ async def tariff_admin_actions(
         await state.clear()
         await state.set_state(TariffAdminState.select_from_country)
         await show_admin_tariff_from_countries(callback, page=0)
+        await callback.answer()
+        return
+
+    if callback_data.action in {"edit_tariff_position", "delete_tariff"}:
+        await state.clear()
+        await state.update_data(tariff_manage_action=callback_data.action)
+        await state.set_state(TariffAdminState.manage_select_from_country)
+        await show_admin_manage_tariff_from_countries(callback, page=0)
         await callback.answer()
         return
 
@@ -2905,6 +2952,76 @@ async def show_admin_tariff_categories(message_or_callback, page: int):
         await message_or_callback.message.edit_text(text, reply_markup=builder.as_markup())
 
 
+async def show_admin_manage_tariff_from_countries(message_or_callback, page: int):
+    async with session_maker() as session:
+        countries = await get_all_tariff_countries(session)
+
+    if not countries:
+        text = "Нет стран для выбора."
+        if isinstance(message_or_callback, Message):
+            await message_or_callback.answer(text)
+        else:
+            await message_or_callback.message.edit_text(text)
+        return
+
+    paginator = Paginator(countries, page)
+    countries_slice = paginator.get_current_page_items()
+
+    builder = InlineKeyboardBuilder()
+    for country in countries_slice:
+        builder.button(
+            text=country.name_ru,
+            callback_data=TariffAdminManageFromCountryCallback(id=country.id).pack(),
+        )
+
+    pagination_buttons = paginator.get_pagination_buttons(TariffAdminManageFromPageCallback)
+    if pagination_buttons:
+        builder.row(*pagination_buttons)
+
+    builder.adjust(2)
+
+    text = "Выберите страну отправителя:"
+    if isinstance(message_or_callback, Message):
+        await message_or_callback.answer(text, reply_markup=builder.as_markup())
+    else:
+        await message_or_callback.message.edit_text(text, reply_markup=builder.as_markup())
+
+
+async def show_admin_manage_tariff_to_countries(message_or_callback, page: int):
+    async with session_maker() as session:
+        countries = await get_all_tariff_countries(session)
+
+    if not countries:
+        text = "Нет стран для выбора."
+        if isinstance(message_or_callback, Message):
+            await message_or_callback.answer(text)
+        else:
+            await message_or_callback.message.edit_text(text)
+        return
+
+    paginator = Paginator(countries, page)
+    countries_slice = paginator.get_current_page_items()
+
+    builder = InlineKeyboardBuilder()
+    for country in countries_slice:
+        builder.button(
+            text=country.name_ru,
+            callback_data=TariffAdminManageToCountryCallback(id=country.id).pack(),
+        )
+
+    pagination_buttons = paginator.get_pagination_buttons(TariffAdminManageToPageCallback)
+    if pagination_buttons:
+        builder.row(*pagination_buttons)
+
+    builder.adjust(2)
+
+    text = "Выберите страну получателя:"
+    if isinstance(message_or_callback, Message):
+        await message_or_callback.answer(text, reply_markup=builder.as_markup())
+    else:
+        await message_or_callback.message.edit_text(text, reply_markup=builder.as_markup())
+
+
 @dp.callback_query(TariffAdminFromPageCallback.filter())
 async def paginate_admin_tariff_from(
     callback: CallbackQuery, callback_data: TariffAdminFromPageCallback
@@ -2935,6 +3052,26 @@ async def paginate_admin_tariff_category(
     await show_admin_tariff_categories(callback, page=callback_data.page)
 
 
+@dp.callback_query(TariffAdminManageFromPageCallback.filter())
+async def paginate_admin_manage_tariff_from(
+    callback: CallbackQuery, callback_data: TariffAdminManageFromPageCallback
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    await show_admin_manage_tariff_from_countries(callback, page=callback_data.page)
+
+
+@dp.callback_query(TariffAdminManageToPageCallback.filter())
+async def paginate_admin_manage_tariff_to(
+    callback: CallbackQuery, callback_data: TariffAdminManageToPageCallback
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    await show_admin_manage_tariff_to_countries(callback, page=callback_data.page)
+
+
 @dp.callback_query(TariffAdminFromCountryCallback.filter())
 async def admin_select_from_country(
     callback: CallbackQuery, callback_data: TariffAdminFromCountryCallback, state: FSMContext
@@ -2948,6 +3085,21 @@ async def admin_select_from_country(
     await callback.answer()
 
 
+@dp.callback_query(TariffAdminManageFromCountryCallback.filter())
+async def admin_manage_select_from_country(
+    callback: CallbackQuery,
+    callback_data: TariffAdminManageFromCountryCallback,
+    state: FSMContext,
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    await state.update_data(from_country_id=callback_data.id)
+    await state.set_state(TariffAdminState.manage_select_to_country)
+    await show_admin_manage_tariff_to_countries(callback, page=0)
+    await callback.answer()
+
+
 @dp.callback_query(TariffAdminToCountryCallback.filter())
 async def admin_select_to_country(
     callback: CallbackQuery, callback_data: TariffAdminToCountryCallback, state: FSMContext
@@ -2958,6 +3110,143 @@ async def admin_select_to_country(
     await state.update_data(to_country_id=callback_data.id)
     await state.set_state(TariffAdminState.select_category)
     await show_admin_tariff_categories(callback, page=0)
+    await callback.answer()
+
+
+@dp.callback_query(TariffAdminManageToCountryCallback.filter())
+async def admin_manage_select_to_country(
+    callback: CallbackQuery,
+    callback_data: TariffAdminManageToCountryCallback,
+    state: FSMContext,
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    data = await state.get_data()
+    from_country_id = data.get("from_country_id")
+    manage_action = data.get("tariff_manage_action")
+
+    if not from_country_id or not manage_action:
+        await callback.message.edit_text(
+            "Не удалось определить параметры. Попробуйте снова.",
+            reply_markup=build_admin_tariff_menu(),
+        )
+        await state.clear()
+        await callback.answer()
+        return
+
+    async with session_maker() as session:
+        tariffs = await get_tariffs_for_route(session, from_country_id, callback_data.id)
+
+    if not tariffs:
+        await callback.message.edit_text(
+            "Нет тарифов для выбранного направления.",
+            reply_markup=build_admin_tariff_menu(),
+        )
+        await state.clear()
+        await callback.answer()
+        return
+
+    builder = InlineKeyboardBuilder()
+    for tariff in tariffs:
+        button_action = (
+            "edit_position" if manage_action == "edit_tariff_position" else "confirm_delete"
+        )
+        builder.button(
+            text=f"{tariff.category.name_ru} (позиция {tariff.position})",
+            callback_data=TariffAdminManageTariffCallback(
+                id=tariff.id, action=button_action
+            ).pack(),
+        )
+
+    builder.button(
+        text="🔙 Назад",
+        callback_data=TariffAdminActionCallback(action="menu").pack(),
+    )
+    builder.adjust(1)
+
+    header = (
+        "Выберите тариф для изменения позиции:"
+        if manage_action == "edit_tariff_position"
+        else "Выберите тариф для удаления:"
+    )
+    await callback.message.edit_text(header, reply_markup=builder.as_markup())
+    await callback.answer()
+
+
+@dp.callback_query(TariffAdminManageTariffCallback.filter(F.action == "edit_position"))
+async def admin_manage_edit_tariff_position(
+    callback: CallbackQuery, callback_data: TariffAdminManageTariffCallback, state: FSMContext
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    async with session_maker() as session:
+        tariff = await get_tariff_by_id(session, callback_data.id)
+
+    if not tariff:
+        await callback.message.edit_text(
+            "Тариф не найден.", reply_markup=build_admin_tariff_menu()
+        )
+        await state.clear()
+        await callback.answer()
+        return
+
+    await state.update_data(tariff_id=callback_data.id)
+    await state.set_state(TariffAdminState.position)
+    await callback.message.answer(
+        f"Текущая позиция тарифа «{tariff.category.name_ru}»: {tariff.position}\n"
+        "Введите новую позицию (целое число):"
+    )
+    await callback.answer()
+
+
+@dp.callback_query(
+    TariffAdminManageTariffCallback.filter(F.action == "confirm_delete")
+)
+async def admin_manage_confirm_delete_tariff(
+    callback: CallbackQuery, callback_data: TariffAdminManageTariffCallback
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    async with session_maker() as session:
+        tariff = await get_tariff_by_id(session, callback_data.id)
+
+    if not tariff:
+        await callback.message.edit_text(
+            "Тариф не найден.", reply_markup=build_admin_tariff_menu()
+        )
+        await callback.answer()
+        return
+
+    await callback.message.edit_text(
+        text=f"<b>Вы точно хотите удалить тариф «{tariff.category.name_ru}»?</b>",
+        reply_markup=confirm_delete(
+            [
+                TariffAdminManageTariffCallback(
+                    id=callback_data.id, action="delete"
+                ).pack(),
+                TariffAdminActionCallback(action="menu").pack(),
+            ]
+        ),
+    )
+    await callback.answer()
+
+
+@dp.callback_query(TariffAdminManageTariffCallback.filter(F.action == "delete"))
+async def admin_manage_delete_tariff(
+    callback: CallbackQuery, callback_data: TariffAdminManageTariffCallback, state: FSMContext
+):
+    if not is_admin_user(callback.from_user.id):
+        await callback.answer("Нет доступа", show_alert=True)
+        return
+    async with session_maker() as session:
+        await orm_delete_tariff(session, callback_data.id)
+    await state.clear()
+    await callback.message.edit_text(
+        "Тариф удален ✅", reply_markup=build_admin_tariff_menu()
+    )
     await callback.answer()
 
 
@@ -3077,8 +3366,34 @@ async def admin_tariff_description_uz(message: Message, state: FSMContext):
     if not is_admin_user(message.from_user.id):
         await message.answer("Нет доступа")
         return
-    data = await state.get_data()
     await state.update_data(description_uz=message.text.strip())
+    await state.set_state(TariffAdminState.position)
+    await message.answer(
+        "Введите позицию тарифа (целое число, больше — выше в списке, по умолчанию 1):"
+    )
+
+
+@dp.message(TariffAdminState.position, F.text)
+async def admin_tariff_position(message: Message, state: FSMContext):
+    if not is_admin_user(message.from_user.id):
+        await message.answer("Нет доступа")
+        return
+    try:
+        position = int(message.text.strip())
+    except ValueError:
+        await message.answer("Введите позицию числом.")
+        return
+
+    data = await state.get_data()
+    tariff_id = data.get("tariff_id")
+    if tariff_id:
+        async with session_maker() as session:
+            await orm_update_tariff_position(session, tariff_id, position)
+        await state.clear()
+        await message.answer(
+            "Позиция тарифа обновлена ✅", reply_markup=build_admin_tariff_menu()
+        )
+        return
 
     async with session_maker() as session:
         await orm_add_tariff(
@@ -3086,6 +3401,7 @@ async def admin_tariff_description_uz(message: Message, state: FSMContext):
             from_country_id=data["from_country_id"],
             to_country_id=data["to_country_id"],
             category_id=data["category_id"],
+            position=position,
             price_ru=data["price_ru"],
             price_en=data["price_en"],
             price_uz=data["price_uz"],
@@ -3094,7 +3410,7 @@ async def admin_tariff_description_uz(message: Message, state: FSMContext):
             delivery_text_uz=data["delivery_text_uz"],
             description_ru=data["description_ru"],
             description_en=data["description_en"],
-            description_uz=message.text.strip(),
+            description_uz=data["description_uz"],
         )
 
     await state.clear()
