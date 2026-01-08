@@ -1,0 +1,897 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-08 15:30+0500\n"
+"PO-Revision-Date: 2025-02-21 22:25+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.0\n"
+
+#: main.py:1048
+msgid ""
+"Привет! Рады видеть вас в нашем боте для отслеживания посылок 📦. "
+"Получайте обновления о статусе ваших отправлений и другие полезные "
+"новости 🗞\n"
+"\n"
+"Выберите, пожалуйста, язык!"
+msgstr ""
+
+#: main.py:1093
+msgid "Пожалуйста, выберите корректное значение"
+msgstr "Iltimos, to'g'ri qiymatni tanlang"
+
+#: main.py:1098 main.py:1125 main.py:1184 main.py:1211
+msgid "Главное меню"
+msgstr "Bosh menyu"
+
+#: main.py:1102 main.py:1129 main.py:1188 main.py:1215
+msgid "🔍 Отследить посылку"
+msgstr "🔍 Posilkani kuzatish"
+
+#: main.py:1103 main.py:1130 main.py:1189 main.py:1216
+msgid "👤 Контакты"
+msgstr "👤 Kontaktlar"
+
+#: main.py:1106 main.py:1133 main.py:1192 main.py:1219
+msgid "📃 Тарифы"
+msgstr "📃 Tariflar"
+
+#: main.py:1107 main.py:1134 main.py:1193 main.py:1220
+msgid "🌐 Сменить язык"
+msgstr "🌐 Tilni almashtirish"
+
+#: main.py:1110 main.py:1136 main.py:1196 main.py:1222
+msgid "Информация"
+msgstr "Ma'lumot"
+
+#: main.py:1111 main.py:1197
+msgid "Статистика бота"
+msgstr "Bot statistikasi"
+
+#: main.py:1113 main.py:1137 main.py:1199 main.py:1223
+msgid "Поддержка"
+msgstr "Qo'llab-quvvatlash"
+
+#: main.py:1114 main.py:1138 main.py:1200 main.py:1224
+msgid "Соц сети"
+msgstr "Ijtimoiy tarmoqlar"
+
+#: main.py:1116 main.py:1140 main.py:1202 main.py:1226
+msgid "Наш сайт"
+msgstr "Bizning veb-saytimiz"
+
+#: main.py:1162
+msgid "Пожалуйста, введите номер коробки"
+msgstr "Iltimos, quti raqamini kiriting"
+
+#: main.py:1164 main.py:2281 main.py:2306 main.py:2412 main.py:2504
+#: main.py:2519 main.py:2575
+msgid "❌ Отмена"
+msgstr "❌ Bekor qilish"
+
+#: main.py:1241
+msgid "location"
+msgstr "joylashuv"
+
+#: main.py:1242
+msgid "in_driver"
+msgstr "haydovchida"
+
+#: main.py:1243
+msgid "in_warehouse"
+msgstr "omborda"
+
+#: main.py:1244
+msgid "packed"
+msgstr "qadoqlangan"
+
+#: main.py:1245
+msgid "shipped"
+msgstr "jo'natilgan"
+
+#: main.py:1246
+msgid "departed"
+msgstr "jo'nab ketdi"
+
+#: main.py:1247
+msgid "in_transit"
+msgstr "yo'lda"
+
+#: main.py:1248
+msgid "arrived"
+msgstr "kelgan"
+
+#: main.py:1249
+msgid "in_customs"
+msgstr "bojxonada"
+
+#: main.py:1250
+msgid "arrive_warehouse"
+msgstr "omborga kelgan"
+
+#: main.py:1251
+msgid "out_location"
+msgstr "joylashuvdan chiqdi"
+
+#: main.py:1252
+msgid "accept_location"
+msgstr "joylashuv qabul qilindi"
+
+#: main.py:1253
+msgid "out_driver"
+msgstr "haydovchidan chiqdi"
+
+#: main.py:1254
+msgid "delivered"
+msgstr "yetkazildi"
+
+#: main.py:1255
+msgid "not_delivered"
+msgstr "yetkazilmadi"
+
+#: main.py:1256
+msgid "refund"
+msgstr "qaytarildi"
+
+#: main.py:1259
+msgid "USA-UZB EXPRESS"
+msgstr "USA-UZB EXPRESS"
+
+#: main.py:1260
+msgid "UZB-USA Express"
+msgstr "UZB-USA Express"
+
+#: main.py:1261
+msgid "USA-UZB STANDARD"
+msgstr "USA-UZB STANDART"
+
+#: main.py:1262
+msgid "UZB-USA Standard"
+msgstr "UZB-USA Standart"
+
+#: main.py:1263
+msgid "USA-UZB EXPRESS COMMERCIAL"
+msgstr "USA-UZB EXPRESS KOMMERSIAL"
+
+#: main.py:1264
+msgid "USA-UZB GROUND"
+msgstr "USA-UZB YER USTI"
+
+#: main.py:1265
+msgid "UZB-USA GroundUZ"
+msgstr "UZB-USA Yer Usti"
+
+#: main.py:1288
+msgid "По вашему запросу ничего не найдено"
+msgstr "Sizning so'rovingiz bo'yicha hech narsa topilmadi"
+
+#: main.py:1299 main.py:1322 main.py:1345 main.py:1368 main.py:1391
+#: main.py:1414 main.py:1437 main.py:1460 main.py:1483 main.py:1506
+#: main.py:1529 main.py:1552 main.py:1577 main.py:1600 main.py:1623
+#: main.py:1646 main.py:1671 main.py:1691 main.py:1714 main.py:1737
+#: main.py:1760 main.py:1783 main.py:1806 main.py:1829 main.py:1852
+#: main.py:1875 main.py:1898 main.py:1921 main.py:1944 main.py:1964
+#: main.py:1982
+msgid "Invoice Number: "
+msgstr "Quti raqami: "
+
+#: main.py:1302 main.py:1325 main.py:1348 main.py:1371 main.py:1394
+#: main.py:1417 main.py:1440 main.py:1463 main.py:1486 main.py:1509
+#: main.py:1532 main.py:1555 main.py:1580 main.py:1603 main.py:1626
+#: main.py:1649 main.py:1674 main.py:1694 main.py:1717 main.py:1740
+#: main.py:1763 main.py:1786 main.py:1809 main.py:1832 main.py:1855
+#: main.py:1878 main.py:1901 main.py:1924 main.py:1947 main.py:1967
+msgid "Ваш тариф: "
+msgstr "Sizning tarifi:"
+
+#: main.py:1305 main.py:1328 main.py:1351 main.py:1374 main.py:1397
+#: main.py:1420 main.py:1443 main.py:1466 main.py:1489 main.py:1512
+#: main.py:1535 main.py:1558 main.py:1583 main.py:1606 main.py:1629
+#: main.py:1652 main.py:1677 main.py:1697 main.py:1720 main.py:1743
+#: main.py:1766 main.py:1789 main.py:1812 main.py:1835 main.py:1858
+#: main.py:1881 main.py:1904 main.py:1927 main.py:1950 main.py:1970
+#: main.py:1985
+msgid "Статус"
+msgstr "Holat"
+
+#: main.py:1309 main.py:1332 main.py:1355 main.py:1378 main.py:1401
+#: main.py:1424 main.py:1447 main.py:1470 main.py:1493 main.py:1516
+#: main.py:1539 main.py:1562 main.py:1587 main.py:1610 main.py:1633
+#: main.py:1656 main.py:1681 main.py:1701 main.py:1724 main.py:1747
+#: main.py:1770 main.py:1793 main.py:1816 main.py:1839 main.py:1862
+#: main.py:1885 main.py:1908 main.py:1931 main.py:1954 main.py:1974
+msgid "Текущее местоположение: "
+msgstr "Joriy joylashuvi📍: "
+
+#: main.py:1312
+msgid "Доставка будет осуществлена в течение 18 дней."
+msgstr "Yetkazib berish 18 kun ichida amalga oshiriladi."
+
+#: main.py:1335
+msgid "Доставка будет осуществлена в течение 17 дней."
+msgstr "Yetkazib berish 17 kun ichida amalga oshiriladi."
+
+#: main.py:1358
+msgid "Доставка будет осуществлена в течение 16 дней."
+msgstr "Yetkazib berish 16 kun ichida amalga oshiriladi."
+
+#: main.py:1381
+msgid "Доставка будет осуществлена в течение 15 дней."
+msgstr "Yetkazib berish 15 kun ichida amalga oshiriladi."
+
+#: main.py:1404 main.py:1727
+msgid "Доставка будет осуществлена в течение 14 дней."
+msgstr "Yetkazib berish 14 kun ichida amalga oshiriladi."
+
+#: main.py:1450
+msgid "Доставка будет осуществлена в течение 11 дней."
+msgstr "Yetkazib berish 11 kun ichida amalga oshiriladi."
+
+#: main.py:1473
+msgid "Доставка будет осуществлена в течение 9 дней."
+msgstr "Yetkazib berish 9 kun ichida amalga oshiriladi."
+
+#: main.py:1496
+msgid "Доставка будет осуществлена в течение 7 дней."
+msgstr "Yetkazib berish 7 kun ichida amalga oshiriladi."
+
+#: main.py:1519 main.py:1613 main.py:1842
+msgid "Доставка будет осуществлена в течение 5 дней."
+msgstr "Yetkazib berish 5 kun ichida amalga oshiriladi."
+
+#: main.py:1542 main.py:1636 main.py:1865
+msgid "Доставка будет осуществлена в течение 4 дней."
+msgstr "Yetkazib berish 4 kun ichida amalga oshiriladi."
+
+#: main.py:1567 main.py:1661
+msgid "Тел номер: "
+msgstr "Tel"
+
+#: main.py:1570 main.py:1664 main.py:1684 main.py:1888
+msgid "Доставка будет осуществлена в течение 3 дней."
+msgstr "Yetkazib berish 3 kun ichida amalga oshiriladi."
+
+#: main.py:1590 main.py:1704
+msgid "Доставка будет осуществлена в течение дня."
+msgstr "Yetkazib berish bir kun ichida amalga oshiriladi."
+
+#: main.py:1750
+msgid "Доставка будет осуществлена в течение 13 дней."
+msgstr "Yetkazib berish 13 kun ichida amalga oshiriladi."
+
+#: main.py:1773
+msgid "Доставка будет осуществлена в течение 12 дней."
+msgstr "Yetkazib berish 12 kun ichida amalga oshiriladi."
+
+#: main.py:1796
+msgid "Доставка будет осуществлена в течение 10 дней."
+msgstr "Yetkazib berish 10 kun ichida amalga oshiriladi."
+
+#: main.py:1819
+msgid "Доставка будет осуществлена в течение 8 дней."
+msgstr "Yetkazib berish 8 kun ichida amalga oshiriladi."
+
+#: main.py:1911
+msgid "Доставка будет осуществлена в течение 2 дней."
+msgstr "Yetkazib berish 2 kun ichida amalga oshiriladi."
+
+#: main.py:1934
+msgid "Готовы к получению и отправке в другие штаты."
+msgstr "Boshqa davlatlarga olish va jo'natishga tayyor."
+
+#: main.py:1957
+msgid "Доставка будет осуществлена в течение дня"
+msgstr "Yetkazib berish bir kun ichida amalga oshiriladi"
+
+#: main.py:1977
+msgid "Доставлено: "
+msgstr "Yetkazildi: "
+
+#: main.py:2066
+msgid "<b>🗾 Выберите государство:</b>"
+msgstr "<b>🗾Davlatni tanlang!</b>"
+
+#: main.py:2121
+msgid "Назад"
+msgstr "Ortga"
+
+#: main.py:2125
+msgid "<b>🌇 Выберите город:</b>"
+msgstr "<b>Shaharni tanlang:</b>"
+
+#: main.py:2143
+msgid "Ошибка: в этом городе нет данных о улицах."
+msgstr "Xato: ushbu shaharda ko'cha ma'lumotlari yo'q."
+
+#: main.py:2157
+msgid "Нет номеров"
+msgstr "Raqamlar yo'q"
+
+#: main.py:2161
+msgid "Местоположение"
+msgstr "Joylashuv"
+
+#: main.py:2270
+msgid "sel_traffic"
+msgstr "Yuboruvchi mamlakatni tanlang"
+
+#: main.py:2274
+msgid "send-us"
+msgstr "🇺🇸AQSH →"
+
+#: main.py:2275
+msgid "send-uz"
+msgstr "🇺🇿UZB →"
+
+#: main.py:2278
+msgid "send-canada"
+msgstr "🇨🇦Kanada →"
+
+#: main.py:2300 main.py:2406 main.py:2498 main.py:2514
+msgid "sel_rec_coun"
+msgstr "Qabul qiluvchi mamlakatni tanlang"
+
+#: main.py:2303
+msgid "send-us_rec-uz"
+msgstr "→ 🇺🇿UZB"
+
+#: main.py:2304
+msgid "send-us_rec-tjk"
+msgstr "→ 🇹🇯TJK"
+
+#: main.py:2305 main.py:2411 main.py:2503 main.py:2518
+msgid "trf-oth-cn"
+msgstr "Boshqa davlatlar"
+
+#: main.py:2325
+msgid "Наши социальные сети"
+msgstr "Bizning ijtimoiy tarmoqlarimiz"
+
+#: main.py:2333
+msgid "🇺🇸США → 🇺🇿УЗБ"
+msgstr "🇺🇸AQSH → 🇺🇿UZB"
+
+#: main.py:2334 main.py:2424 main.py:2488 main.py:2528 main.py:2538
+#: main.py:2548
+msgid "Стандарт"
+msgstr "Standart"
+
+#: main.py:2335
+msgid "Цена стандарт США-Узб"
+msgstr "Narxi: 1kg uchun 9.0$ (Minimum 3kg)"
+
+#: main.py:2336
+msgid "Стандарт Сша-Узб Доставка"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 5-15 kun"
+
+#: main.py:2338 main.py:2428
+msgid "Экспресс"
+msgstr "Ekspress"
+
+#: main.py:2339
+msgid "Цена экспресс сша-узб"
+msgstr "Narxi: 1kg uchun 18.0$ (Minimum: 1kg)"
+
+#: main.py:2340
+msgid "Доставка экспресс сша-узб"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 2-5 kun"
+
+#: main.py:2342
+msgid "экс-ком-сша-уз"
+msgstr "Express commercial"
+
+#: main.py:2343
+msgid "экс-ком-цен-сша-уз"
+msgstr "Narxi: 1kg uchun 20$ (Minimum: 1kg)"
+
+#: main.py:2344
+msgid "экс-ком-дост-сша-уз"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 2-10 kun"
+
+#: main.py:2346
+msgid "Ground-us-uz"
+msgstr "Standard Commercial"
+
+#: main.py:2347
+msgid "Цена эконом сша-узб"
+msgstr "Narxi: 1kg uchun 15.0$ (Minimum: 3kg)"
+
+#: main.py:2348
+msgid "Доставка эконом сша-узб"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 5-15 kun"
+
+#: main.py:2350
+msgid "send_usa-rec_uz_economy"
+msgstr "Econom"
+
+#: main.py:2351
+msgid "send_usa-rec_uz_economy_price"
+msgstr "Narxi: 1kg uchun 6.99$ (Minimum: 3kg)"
+
+#: main.py:2352
+msgid "send_usa-rec_uz_economy_deliver"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 14-21 kun"
+
+#: main.py:2357 main.py:2448
+msgid "Подробнее"
+msgstr ""
+
+#: main.py:2371
+msgid "economy_send-usa_rec-uz"
+msgstr ""
+"📦 Narxi: 1 kg uchun 6.99 USD. Minimal yuboriladigan og‘irlik — 10 kg.\n"
+"\n"
+"⏱️ yetkazib berish muddati: Haqiqiy jo‘natilgan kundan boshlab 14–21 kun."
+"\n"
+"\n"
+"🧾 Tarif tavsifi: “Econom” tarifi — AQShdan O‘zbekistonga posilkalarni eng"
+" qulay narxda yubormoqchi bo‘lganlar uchun eng yaxshi tanlovdir. "
+"Optimallashtirilgan logistika va konsolidatsiya tufayli siz ishonchli "
+"yetkazib berishni ortiqcha to‘lovsiz olasiz. Hamma posilkalar "
+"ehtiyotkorlik bilan saralanadi va xavfsiz qadoqlanadi, bu esa sizning "
+"buyumlaringizning butun yo‘l davomida xavfsizligini ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Siz posilkangizni AQShdagi omborimizga yuborasiz yoki olib kelasiz;\n"
+"– Konsolidatsiyadan so‘ng yuk O‘zbekistonga jo‘natiladi;\n"
+"– Haqiqiy jo‘natilgan kundan boshlab yetkazib berish muddati hisoblanadi;"
+"\n"
+"– O‘zbekistonga yetib kelgach, posilka zaruriy jarayonlardan o‘tadi va "
+"qabul punktiga yoki kuryerga topshiriladi (shahringizda mavjud bo‘lsa).\n"
+"\n"
+"💡 Kimlar uchun mos:\n"
+"– Katta yoki o‘rta hajmdagi posilkalarni tejamkor narxda yubormoqchi "
+"bo‘lganlar uchun;\n"
+"– Kiyim-kechak, aksessuarlar, uy anjomlari va boshqa yengil mahsulotlar "
+"xaridorlari uchun;\n"
+"– Sovg‘alar, shaxsiy buyumlar yoki kichik partiyadagi tovarlarni "
+"yuboruvchilar uchun.\n"
+
+#: main.py:2378
+msgid "rate_standard_send-us_rec-uz"
+msgstr ""
+"📦 Narxi: 1 kg uchun 9.0 USD. Minimal jo‘natma og‘irligi — 3 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natilgan kundan boshlab 5–15 kun.\n"
+"\n"
+"🧾 Tarif tavsifi: “Standart” tarifi — AQShdan O‘zbekistonga posilkani tez "
+"va arzon narxda olishni istaganlar uchun eng maqbul yechim. Barcha "
+"jo‘natmalar ehtiyotkorlik bilan saralanadi va ishonchli qadoqlanadi, bu "
+"esa buyumlaringizning butun yo‘l davomida xavfsizligini ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Posilkani bizning AQShdagi omborimizga topshirasiz.\n"
+"– Konsolidatsiya va jo‘natishdan so‘ng yetkazib berish muddati "
+"hisoblanishni boshlaydi.\n"
+"– Posilka bojxona jarayonlaridan o‘tadi va O‘zbekistonga yuboriladi.\n"
+"– Yetib kelgach, uni ofisimizdan yoki kuryer orqali (shahringizda mavjud "
+"bo‘lsa) qabul qilib olishingiz mumkin.\n"
+"\n"
+"💡 Kimlar uchun mos:\n"
+"– Amerika internet-do‘konlaridan xarid qiluvchilar;\n"
+"– Texnika, kiyim-kechak, aksessuarlar va boshqa mahsulotlarni buyurtma "
+"qiluvchilar;\n"
+"– Doimiy jo‘natmalar va shaxsiy posilkalar uchun."
+
+#: main.py:2385
+msgid "rate_express_send-us_rec-uz"
+msgstr ""
+"📦 Narxi: 1 kg uchun 18.0 USD. Minimal jo‘natma og‘irligi — 1 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natilgan kundan boshlab 2–5 kun.\n"
+"\n"
+"🧾 Tarif tavsifi: “Ekspress” tarifi maksimal tezlik muhim bo‘lgan mijozlar"
+" uchun mo‘ljallangan. Bu AQShdan O‘zbekistonga posilka olishning eng "
+"tezkor usuli. Jo‘natmalar ustuvor tartibda ko‘rib chiqiladi, "
+"tezlashtirilgan logistik jarayonlardan o‘tadi va eng qisqa fursatda "
+"yetkaziladi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Posilka AQShdagi omborimizda qabul qilinadi va darhol tezkor "
+"jo‘natishga tayyorlanadi.\n"
+"– Jo‘natilgandan so‘ng yetkazib berish muddati hisoblanadi — atigi bir "
+"necha kun.\n"
+"– Posilka tezlashtirilgan bojxona jarayonlaridan o‘tadi.\n"
+"– O‘zbekistonga yetkaziladi va ofisdan yoki kuryer orqali (shaharga "
+"qarab) qabul qilish mumkin bo‘ladi.\n"
+"\n"
+"💡 Kimlar uchun mos:\n"
+"– Mahsulotni imkon qadar tez olishni istaganlar;\n"
+"– Qimmatbaho, shoshilinch yoki muhim jo‘natmalar uchun;\n"
+"– Hujjatlar, texnika va premium tovarlarni tez yetkazish uchun."
+
+#: main.py:2392
+msgid "rate_ground_send-us_rec-uz"
+msgstr ""
+"📦 Narxi: 1 kg uchun 15.0 USD. Minimal jo‘natma og‘irligi — 3 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natilgan kundan boshlab 5–15 kun.\n"
+"\n"
+"🧾 Tarif tavsifi: “Standart Kommercheskiy” tarifi aynan tadbirkorlar, "
+"onlayn do‘kon egalari va AQShdan muntazam ravishda katta hajmdagi "
+"tovarlar jo‘natadiganlar uchun mo‘ljallangan. Bu tarif arzon narx va "
+"barqaror yetkazib berish muddatlarini uyg‘unlashtiradi, kommersiya "
+"yuklari uchun ishonchli logistika ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Yuk AQShdagi omborimizga keladi va saralashdan o‘tadi.\n"
+"– Jo‘natishdan so‘ng yetkazib berish muddati hisoblanadi.\n"
+"– Posilkalar bojxona jarayonlaridan o‘tadi va O‘zbekistonga yuboriladi.\n"
+"– Ofisimizdan yoki kuryer orqali (shahar holatiga qarab) qabul qilib "
+"olish mumkin.\n"
+"\n"
+"💡 Kimlar uchun mos:\n"
+"– Kichik va o‘rta biznes;\n"
+"– Onlayn sotuvchilar va reselllar;\n"
+"– Kiyim-kechak, aksessuarlar, texnika va boshqa kommersiya tovarlarini "
+"jo‘natish uchun."
+
+#: main.py:2399
+msgid "rate_express2_send-us_rec-uz"
+msgstr ""
+"📦 Narxi: 1 kg uchun 20.0 USD. Minimal jo‘natma og‘irligi — 1 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natilgan kundan boshlab 2–10 kun.\n"
+"\n"
+"🧾 Tarif tavsifi: “Ekspress Kommercheskiy” tarifi tadbirkorlar va "
+"kompaniyalar uchun mo‘ljallangan bo‘lib, ular AQShdan mahsulotni maksimal"
+" tezlik bilan olishni xohlashadi. Jo‘natmalar ustuvor tartibda ko‘rib "
+"chiqiladi, tezlashtirilgan logistika orqali yetkaziladi va qisqa muddat "
+"ichida yetkaziladi, bu esa dinamik biznes uchun ideal yechimdir.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Mahsulot AQShdagi omborimizga yetib keladi va darhol ekspress "
+"jo‘natishga tayyorlanadi.\n"
+"– Jo‘natilgandan so‘ng yetkazib berish muddati hisoblanadi — bir necha "
+"kun ichida.\n"
+"– Yuk tezlashtirilgan bojxona jarayonlaridan o‘tadi.\n"
+"– O‘zbekistonga yetkaziladi va ofisdan yoki kuryer orqali (shahringizga "
+"qarab) qabul qilib olish mumkin.\n"
+"\n"
+"💡 Kimlar uchun mos:\n"
+"– Tez aylanadigan mahsulotga ega bizneslar;\n"
+"– Onlayn do‘konlar va reselllar;\n"
+"– Texnika, kiyim-kechak, aksessuarlar, elektronika va boshqa kommersiya "
+"tovarlarini shoshilinch yetkazish uchun."
+
+#: main.py:2409
+msgid "send-uz_rec-us"
+msgstr "→ 🇺🇸AQSH"
+
+#: main.py:2410
+msgid "send-uz_rec-tjk"
+msgstr "→🇹🇯TJK"
+
+#: main.py:2421
+msgid "🇺🇿УЗБ → 🇺🇸США"
+msgstr "🇺🇿UZB → 🇺🇸AQSH"
+
+#: main.py:2425
+msgid "price_uz_standart"
+msgstr "Narxi: 1kg uchun 12$ (Minimum: 3kg)"
+
+#: main.py:2426
+msgid "Доставка Узб-Сша Стандарт"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 5-15 kun"
+
+#: main.py:2429
+msgid "Цена экспресс Узб-Сша"
+msgstr "Narxi: 1kg uchun 18.0$ (Minimum: 1kg)"
+
+#: main.py:2430
+msgid "Доставка экспресс Узб-Сша"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 2-5 kun"
+
+#: main.py:2432
+msgid "standart_com_uz_usa"
+msgstr "Standart commercial"
+
+#: main.py:2433
+msgid "price_st_com_uz_usa"
+msgstr "Narxi: 1kg uchun 15$ (Minimum: 3kg)"
+
+#: main.py:2434
+msgid "delivery_st_com_uz_usa"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 5-15 kun"
+
+#: main.py:2436
+msgid "express_com_uz_usa"
+msgstr "Express commercial"
+
+#: main.py:2437
+msgid "price_ex_com_uz_usa"
+msgstr "Narxi: 1kg uchun 20$ (Minimum: 1kg)"
+
+#: main.py:2438
+msgid "delivery_ex_com_uz_usa"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 2-10 kun"
+
+#: main.py:2440
+msgid "Ground"
+msgstr "Konteyner"
+
+#: main.py:2441
+msgid "Эконом Узб-Сша"
+msgstr "Narxi: 1kg uchun 1.99$-5.49$ (Minimum: 100kg)"
+
+#: main.py:2442
+msgid "Доставка эконом узб-сша"
+msgstr "Yetkazib berish muddati: jo'natilgan kundan boshlab 45-60 kun"
+
+#: main.py:2462
+msgid "price_uz_standart_detail"
+msgstr ""
+"📦 Narxi: 12.0 USD 1 kg uchun. Minimal yuborish og‘irligi — 3 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natish kunidan 5 dan 15 kungacha.\n"
+"\n"
+"🧾 Tarif tavsifi: “Standart” tarifi — bu o‘zbekistondan AQShga "
+"posilkalarni ishonchli va qulay narxda yuborishni xohlovchilar uchun "
+"ideal yechim. Barcha jo‘natmalar diqqat bilan saralanadi va mustahkam "
+"qadoqlanadi, bu sizning narsalaringizning yetkazib berish davomida "
+"xavfsizligini ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Siz posilkani O‘zbekistondagi omborimizga topshirasiz.\n"
+"– Konsolidatsiya va jo‘natishdan so‘ng yetkazib berish muddati "
+"hisoblanadi.\n"
+"– Posilka bojxona tartibidan o‘tadi va AQShga transport qilinadi.\n"
+"– Qabul qiluvchi uni olish punktidan olishi yoki kurer orqali yetkazib "
+"berishni buyurtirishi mumkin (agar hududingizda mavjud bo‘lsa).\n"
+"\n"
+"💡 Kimlarga mos:\n"
+"– Shaxsiy va tijorat posilkalarini yuborish uchun;\n"
+"– Kiyim-kechak, aksessuar, texnika va boshqa buyumlarni buyurtma "
+"qiluvchilarga;\n"
+"– AQShga ishonchli va arzon yetkazib berish uchun."
+
+#: main.py:2467
+msgid "rate_express_send-uz_rec-us"
+msgstr ""
+"📦 Narxi: 18.0 USD 1 kg uchun. Minimal yuborish og‘irligi — 1 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natish kunidan 2 dan 5 kungacha.\n"
+"\n"
+"🧾 Tarif tavsifi: “Ekspress” tarifi tezlikni qadrlovchilar uchun "
+"mo‘ljallangan. O‘zbekistondan AQShga posilkalar ustuvor tartibda "
+"ishlanadi, tezkor logistika bosqichlaridan o‘tadi va eng qisqa "
+"muddatlarda yetkaziladi. Bu tarif tezkor jo‘natmalar uchun ideal.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Posilka O‘zbekistondagi omborda qabul qilinadi va ekspress jo‘natishga "
+"tayyorlanadi.\n"
+"– Jo‘natishdan so‘ng yetkazib berish muddati hisoblanadi — faqat bir "
+"necha kun.\n"
+"– Posilka tezkor bojxona tartibidan o‘tadi.\n"
+"– AQShga yetgach, qabul qiluvchi uni olish punktidan olishi yoki kurer "
+"orqali yetkazib berishni buyurtirishi mumkin (agar hududingizda mavjud "
+"bo‘lsa).\n"
+"\n"
+"💡 Kimlarga mos:\n"
+"– Eng tez posilkani olishni istovchilar uchun;\n"
+"– Qimmatbaho, tezkor yoki muhim jo‘natmalar uchun;\n"
+"– Texnika, kiyim-kechak, aksessuar va boshqa posilkalarni tez yetkazish "
+"uchun."
+
+#: main.py:2472
+msgid "price_st_com_uz_usa_detail"
+msgstr ""
+"📦 Narxi: 15.0 USD 1 kg uchun. Minimal yuborish og‘irligi — 3 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natish kunidan 5 dan 15 kungacha.\n"
+"\n"
+"🧾 Tarif tavsifi: “Standart tijorat” tarifi tadbirkorlar, internet-"
+"do‘konlar va doimiy ravishda katta partiyalarda jo‘natma qiluvchi "
+"shaxslar uchun yaratilgan. U qulay narx va barqaror yetkazib berish "
+"muddatlarini birlashtiradi, tijorat yuklari uchun ishonchli logistika "
+"ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Yuk O‘zbekistondagi omborda qabul qilinadi va saralanadi.\n"
+"– Jo‘natishdan so‘ng yetkazib berish muddati hisoblanadi.\n"
+"– Posilkalar bojxona tartibidan o‘tadi va AQShga transport qilinadi.\n"
+"– Qabul qiluvchi uni olish punktidan olishi yoki kurer orqali yetkazib "
+"berishni buyurtirishi mumkin (hududga qarab).\n"
+"\n"
+"💡 Kimlarga mos:\n"
+"– Kichik va o‘rta biznes uchun;\n"
+"– Onlayn sotuvchilar va resellchilar uchun;\n"
+"– Kiyim-kechak, aksessuar, texnika va boshqa tijorat buyumlarini yuborish"
+" uchun."
+
+#: main.py:2477
+msgid "price_ex_com_uz_usa_detail"
+msgstr ""
+"📦 Narxi: 20.0 USD 1 kg uchun. Minimal yuborish og‘irligi — 1 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natish kunidan 2 dan 10 kungacha.\n"
+"\n"
+"🧾 Tarif tavsifi: “Ekspress tijorat” tarifi tezkor yetkazib berish kerak "
+"bo‘lgan tadbirkorlar va kompaniyalar uchun mo‘ljallangan. Yuklar ustuvor "
+"tarzda ishlanadi, tezkor logistika bosqichlaridan o‘tadi va qisqa "
+"muddatlarda yetkaziladi, bu esa dinamik biznes uchun ideal.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Yuk O‘zbekistondagi omborda qabul qilinadi va ekspress jo‘natishga "
+"tayyorlanadi.\n"
+"– Jo‘natishdan so‘ng yetkazib berish muddati hisoblanadi — faqat bir "
+"necha kun.\n"
+"– Yuk tezkor bojxona tartibidan o‘tadi.\n"
+"– AQShga yetgach, qabul qiluvchi uni olish punktidan olishi yoki kurer "
+"orqali yetkazib berishni buyurtirishi mumkin (agar hududingizda mavjud "
+"bo‘lsa).\n"
+"\n"
+"💡 Kimlarga mos:\n"
+"– Tez aylanadigan biznes uchun;\n"
+"– Internet-do‘konlar va resellchilar uchun;\n"
+"– Texnika, kiyim-kechak, aksessuar, elektronika va boshqa tijorat "
+"yuklarini tez yetkazish uchun."
+
+#: main.py:2482
+msgid "rate_ground_send-uz_rec-us"
+msgstr ""
+"📦 Narxi: 1.99–5.49 USD 1 kg uchun. Minimal yuborish og‘irligi — 100 kg.\n"
+"\n"
+"⏱️ Yetkazib berish muddati: Haqiqiy jo‘natish kunidan 45 dan 60 kungacha."
+"\n"
+"\n"
+"🧾 Tarif tavsifi: “Konteyner” tarifi O‘zbekistondan AQShga katta hajmdagi "
+"yuklar uchun mo‘ljallangan. Bu tarif katta partiyalarda yoki ulgurji "
+"buyurtmalar uchun ideal. Yetkazib berish muddati uzoq bo‘lsa-da, tarif "
+"ishonchli logistika va yukning xavfsizligini ta’minlaydi.\n"
+"\n"
+"🚚 Yetkazib berish qanday ishlaydi:\n"
+"– Yuk omborda qabul qilinadi, saralanadi va qadoqlanadi.\n"
+"– Konteyner jo‘natilishi dengiz transporti orqali amalga oshiriladi.\n"
+"– Yuk bojxona tartibidan o‘tadi va AQShga transport qilinadi.\n"
+"– AQShga yetgach, qabul qiluvchi konteynerni olish punktidan olishi yoki "
+"manzilga davomiy yetkazib berishni buyurtirishi mumkin.\n"
+"\n"
+"💡 Kimlarga mos:\n"
+"– Katta tijorat jo‘natmalari va ulgurji partiyalar uchun;\n"
+"– Katta hajmdagi mahsulot bilan ishlaydigan biznes uchun;\n"
+"– Katta yuklarni tejamkor jo‘natish, 1,5–2 oy kutishga tayyor bo‘lganlar "
+"uchun."
+
+#: main.py:2487
+msgid "🇨🇦УЗБ → 🇺🇿ТЖК"
+msgstr "🇺🇿UZB → 🇹🇯TJK"
+
+#: main.py:2489
+msgid "Цена стандарт Узб-Тжк"
+msgstr "Narxi: 1kg uchun 10.0$ (Minimum 3kg)"
+
+#: main.py:2490
+msgid "Стандарт Узб-Тжк Доставка"
+msgstr "Yetkazib berish muddati: 6-7 ish kuni"
+
+#: main.py:2501
+msgid "send-canada-accept-uz"
+msgstr "→🇺🇿UZB"
+
+#: main.py:2502
+msgid "send-canada-accept-tj"
+msgstr "→🇹🇯TJK"
+
+#: main.py:2517
+msgid "send-tjk-accept-usa"
+msgstr "→ 🇺🇸AQSH"
+
+#: main.py:2527
+msgid "🇨🇦Канада → 🇺🇿УЗБ"
+msgstr "🇨🇦Kanada → 🇺🇿UZB"
+
+#: main.py:2529
+msgid "Цена стандарт Канада-Узб"
+msgstr "Narxi: 1kg uchun 13$-Kanada (Minimum 3kg)"
+
+#: main.py:2530
+msgid "Стандарт Канада-Узб Доставка"
+msgstr "Yetkazib berish muddati: 5-15 ish kuni"
+
+#: main.py:2537
+msgid "🇺🇸США → 🇹🇯ТЖК"
+msgstr "🇺🇸AQSH → 🇹🇯TJK"
+
+#: main.py:2539
+msgid "Цена стандарт США-ТЖК"
+msgstr "Narxi: 1kg uchun 11.99$ (Minimum 3kg)"
+
+#: main.py:2540
+msgid "Стандарт США-ТЖК Доставка"
+msgstr "Yetkazib berish muddati: 14-21 ish kuni"
+
+#: main.py:2547
+msgid "🇨🇦Канада → 🇹🇯ТЖК"
+msgstr "🇨🇦Kanada → 🇹🇯TJK"
+
+#: main.py:2549
+msgid "Цена стандарт Канада-ТЖК"
+msgstr "Narxi: 1kg uchun 16.49$ (Minimum 3kg)"
+
+#: main.py:2550
+msgid "Стандарт Канада-ТЖК Доставка"
+msgstr "Yetkazib berish muddati: 5-15 ish kuni"
+
+#: main.py:2557
+msgid "Следите за новостями скоро будут и в других странах"
+msgstr ""
+"Yangiliklarimizni kuzatib boring, yaqin orada boshqa davlatlarda ham "
+"bo'ladi"
+
+#: main.py:2573
+msgid "Пожалуйста, напишите ваше сообщение!"
+msgstr "Iltimos, xabaringizni yozing!"
+
+#: main.py:2591
+msgid "Ваше сообщение передано, ждите ответ от службы поддержки клиентов!"
+msgstr ""
+"Xabaringiz yuborildi, mijozlarni qo'llab-quvvatlash xizmati javobini "
+"kuting!"
+
+#: main.py:2604
+msgid "Сообщение от поддержки!"
+msgstr "Qo'llab-quvvatlashdan xabar!"
+
+#~ msgid "Доставка Узб-Сша(стандарт)"
+#~ msgstr ""
+
+#~ msgid "Стандарт Сша-Узб Цена"
+#~ msgstr ""
+
+#~ msgid "Доставка в течении: 5-10 рабочих дней"
+#~ msgstr "Yetkazib berish: 15-25 ish kuni"
+
+#~ msgid "pr_gr_uz"
+#~ msgstr "Narxi: 1kg uchun 8.79$+"
+
+#~ msgid "Цена: 7.5$ за 1кг"
+#~ msgstr "Narxi: 7.5$ 1kg uchun"
+
+#~ msgid "Цена2"
+#~ msgstr "Narxi: 1kg uchun 15$"
+
+#~ msgid "Доставка1-3"
+#~ msgstr "Yetkazib berish muddati: 1-3 ish kuni"
+
+#~ msgid "ground_price"
+#~ msgstr "Narxi: 1kg uchun 4$+"
+
+#~ msgid "gr_del"
+#~ msgstr "Yetkazib berish muddati: 7-15 ish kuni"
+
+#~ msgid "gr_delive"
+#~ msgstr "Yetkazib berish muddati: 15-25 ish kuni"
+
+#~ msgid "send-tjk"
+#~ msgstr "🇹🇯TJK →"
+
+#~ msgid "экс-ком"
+#~ msgstr "Express tijorat"
+
+#~ msgid "price_express_detail"
+#~ msgstr ""
+
+#~ msgid "ground_detail"
+#~ msgstr "Konteyner"
+
+#~ msgid "Приблизительная дата прибытия"
+#~ msgstr "Taxminiy kelish sanasi: "
+
+#~ msgid "📄 Тарифы2"
+#~ msgstr "📃 Tariflar"
+
+#~ msgid "Выберите страну отправителя:"
+#~ msgstr ""
+

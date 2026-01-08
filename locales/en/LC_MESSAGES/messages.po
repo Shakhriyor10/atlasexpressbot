@@ -1,0 +1,886 @@
+# English translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-12-08 15:30+0500\n"
+"PO-Revision-Date: 2025-02-21 22:25+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.0\n"
+
+#: main.py:1048
+msgid ""
+"Привет! Рады видеть вас в нашем боте для отслеживания посылок 📦. "
+"Получайте обновления о статусе ваших отправлений и другие полезные "
+"новости 🗞\n"
+"\n"
+"Выберите, пожалуйста, язык!"
+msgstr ""
+
+#: main.py:1093
+msgid "Пожалуйста, выберите корректное значение"
+msgstr "Please select a valid value"
+
+#: main.py:1098 main.py:1125 main.py:1184 main.py:1211
+msgid "Главное меню"
+msgstr "Main menu"
+
+#: main.py:1102 main.py:1129 main.py:1188 main.py:1215
+msgid "🔍 Отследить посылку"
+msgstr "🔍 Track a parcel"
+
+#: main.py:1103 main.py:1130 main.py:1189 main.py:1216
+msgid "👤 Контакты"
+msgstr "👤 Contacts"
+
+#: main.py:1106 main.py:1133 main.py:1192 main.py:1219
+msgid "📃 Тарифы"
+msgstr "📃 Rates"
+
+#: main.py:1107 main.py:1134 main.py:1193 main.py:1220
+msgid "🌐 Сменить язык"
+msgstr "🌐 Change language"
+
+#: main.py:1110 main.py:1136 main.py:1196 main.py:1222
+msgid "Информация"
+msgstr "Information"
+
+#: main.py:1111 main.py:1197
+msgid "Статистика бота"
+msgstr "Bot statistics"
+
+#: main.py:1113 main.py:1137 main.py:1199 main.py:1223
+msgid "Поддержка"
+msgstr "Support"
+
+#: main.py:1114 main.py:1138 main.py:1200 main.py:1224
+msgid "Соц сети"
+msgstr "Social networks"
+
+#: main.py:1116 main.py:1140 main.py:1202 main.py:1226
+msgid "Наш сайт"
+msgstr "Our website"
+
+#: main.py:1162
+msgid "Пожалуйста, введите номер коробки"
+msgstr "Please enter the box number"
+
+#: main.py:1164 main.py:2281 main.py:2306 main.py:2412 main.py:2504
+#: main.py:2519 main.py:2575
+msgid "❌ Отмена"
+msgstr "❌ Cancel"
+
+#: main.py:1241
+msgid "location"
+msgstr "Location"
+
+#: main.py:1242
+msgid "in_driver"
+msgstr "In driver"
+
+#: main.py:1243
+msgid "in_warehouse"
+msgstr "In warehouse"
+
+#: main.py:1244
+msgid "packed"
+msgstr "Packed"
+
+#: main.py:1245
+msgid "shipped"
+msgstr "Shipped"
+
+#: main.py:1246
+msgid "departed"
+msgstr "Departed"
+
+#: main.py:1247
+msgid "in_transit"
+msgstr "In transit"
+
+#: main.py:1248
+msgid "arrived"
+msgstr "Arrived"
+
+#: main.py:1249
+msgid "in_customs"
+msgstr "In customs"
+
+#: main.py:1250
+msgid "arrive_warehouse"
+msgstr "Arrive warehouse"
+
+#: main.py:1251
+msgid "out_location"
+msgstr "Out location"
+
+#: main.py:1252
+msgid "accept_location"
+msgstr "Accept location"
+
+#: main.py:1253
+msgid "out_driver"
+msgstr "Out driver"
+
+#: main.py:1254
+msgid "delivered"
+msgstr "Delivered"
+
+#: main.py:1255
+msgid "not_delivered"
+msgstr "Not delivered"
+
+#: main.py:1256
+msgid "refund"
+msgstr "Refund"
+
+#: main.py:1259
+msgid "USA-UZB EXPRESS"
+msgstr "USA-UZB EXPRESS"
+
+#: main.py:1260
+msgid "UZB-USA Express"
+msgstr "UZB-USA Express"
+
+#: main.py:1261
+msgid "USA-UZB STANDARD"
+msgstr "USA-UZB STANDARD"
+
+#: main.py:1262
+msgid "UZB-USA Standard"
+msgstr "UZB-USA Standard"
+
+#: main.py:1263
+msgid "USA-UZB EXPRESS COMMERCIAL"
+msgstr "USA-UZB EXPRESS COMMERCIAL"
+
+#: main.py:1264
+msgid "USA-UZB GROUND"
+msgstr "USA-UZB GROUND"
+
+#: main.py:1265
+msgid "UZB-USA GroundUZ"
+msgstr "UZB-USA GroundUZ"
+
+#: main.py:1288
+msgid "По вашему запросу ничего не найдено"
+msgstr "No results found for your query"
+
+#: main.py:1299 main.py:1322 main.py:1345 main.py:1368 main.py:1391
+#: main.py:1414 main.py:1437 main.py:1460 main.py:1483 main.py:1506
+#: main.py:1529 main.py:1552 main.py:1577 main.py:1600 main.py:1623
+#: main.py:1646 main.py:1671 main.py:1691 main.py:1714 main.py:1737
+#: main.py:1760 main.py:1783 main.py:1806 main.py:1829 main.py:1852
+#: main.py:1875 main.py:1898 main.py:1921 main.py:1944 main.py:1964
+#: main.py:1982
+msgid "Invoice Number: "
+msgstr "Box number: "
+
+#: main.py:1302 main.py:1325 main.py:1348 main.py:1371 main.py:1394
+#: main.py:1417 main.py:1440 main.py:1463 main.py:1486 main.py:1509
+#: main.py:1532 main.py:1555 main.py:1580 main.py:1603 main.py:1626
+#: main.py:1649 main.py:1674 main.py:1694 main.py:1717 main.py:1740
+#: main.py:1763 main.py:1786 main.py:1809 main.py:1832 main.py:1855
+#: main.py:1878 main.py:1901 main.py:1924 main.py:1947 main.py:1967
+msgid "Ваш тариф: "
+msgstr "Your rate: "
+
+#: main.py:1305 main.py:1328 main.py:1351 main.py:1374 main.py:1397
+#: main.py:1420 main.py:1443 main.py:1466 main.py:1489 main.py:1512
+#: main.py:1535 main.py:1558 main.py:1583 main.py:1606 main.py:1629
+#: main.py:1652 main.py:1677 main.py:1697 main.py:1720 main.py:1743
+#: main.py:1766 main.py:1789 main.py:1812 main.py:1835 main.py:1858
+#: main.py:1881 main.py:1904 main.py:1927 main.py:1950 main.py:1970
+#: main.py:1985
+msgid "Статус"
+msgstr "Status"
+
+#: main.py:1309 main.py:1332 main.py:1355 main.py:1378 main.py:1401
+#: main.py:1424 main.py:1447 main.py:1470 main.py:1493 main.py:1516
+#: main.py:1539 main.py:1562 main.py:1587 main.py:1610 main.py:1633
+#: main.py:1656 main.py:1681 main.py:1701 main.py:1724 main.py:1747
+#: main.py:1770 main.py:1793 main.py:1816 main.py:1839 main.py:1862
+#: main.py:1885 main.py:1908 main.py:1931 main.py:1954 main.py:1974
+msgid "Текущее местоположение: "
+msgstr "Current location📍: "
+
+#: main.py:1312
+msgid "Доставка будет осуществлена в течение 18 дней."
+msgstr "Delivery will be completed within 18 days."
+
+#: main.py:1335
+msgid "Доставка будет осуществлена в течение 17 дней."
+msgstr "Delivery will be completed within 17 days."
+
+#: main.py:1358
+msgid "Доставка будет осуществлена в течение 16 дней."
+msgstr "Delivery will be completed within 16 days."
+
+#: main.py:1381
+msgid "Доставка будет осуществлена в течение 15 дней."
+msgstr "Delivery will be completed within 15 days."
+
+#: main.py:1404 main.py:1727
+msgid "Доставка будет осуществлена в течение 14 дней."
+msgstr "Delivery will be completed within 14 days."
+
+#: main.py:1450
+msgid "Доставка будет осуществлена в течение 11 дней."
+msgstr "Delivery will be completed within 11 days."
+
+#: main.py:1473
+msgid "Доставка будет осуществлена в течение 9 дней."
+msgstr "Delivery will be completed within 9 days."
+
+#: main.py:1496
+msgid "Доставка будет осуществлена в течение 7 дней."
+msgstr "Delivery will be completed within 7 days."
+
+#: main.py:1519 main.py:1613 main.py:1842
+msgid "Доставка будет осуществлена в течение 5 дней."
+msgstr "Delivery will be made within 5 days."
+
+#: main.py:1542 main.py:1636 main.py:1865
+msgid "Доставка будет осуществлена в течение 4 дней."
+msgstr "Delivery will be made within 4 days."
+
+#: main.py:1567 main.py:1661
+msgid "Тел номер: "
+msgstr "Tel"
+
+#: main.py:1570 main.py:1664 main.py:1684 main.py:1888
+msgid "Доставка будет осуществлена в течение 3 дней."
+msgstr "Delivery will be made within 3 days."
+
+#: main.py:1590 main.py:1704
+msgid "Доставка будет осуществлена в течение дня."
+msgstr "Delivery will be made within a day."
+
+#: main.py:1750
+msgid "Доставка будет осуществлена в течение 13 дней."
+msgstr "Delivery will be completed within 13 days."
+
+#: main.py:1773
+msgid "Доставка будет осуществлена в течение 12 дней."
+msgstr "Delivery will be made within 12 days."
+
+#: main.py:1796
+msgid "Доставка будет осуществлена в течение 10 дней."
+msgstr "Delivery will be made within 10 days."
+
+#: main.py:1819
+msgid "Доставка будет осуществлена в течение 8 дней."
+msgstr "Delivery will be made within 8 days."
+
+#: main.py:1911
+msgid "Доставка будет осуществлена в течение 2 дней."
+msgstr "Delivery will be made within 2 days."
+
+#: main.py:1934
+msgid "Готовы к получению и отправке в другие штаты."
+msgstr "Ready for receipt and shipment to other states."
+
+#: main.py:1957
+msgid "Доставка будет осуществлена в течение дня"
+msgstr "Delivery will be made within a day."
+
+#: main.py:1977
+msgid "Доставлено: "
+msgstr "Delivered:"
+
+#: main.py:2066
+msgid "<b>🗾 Выберите государство:</b>"
+msgstr "<b>🗾Select country!</b>"
+
+#: main.py:2121
+msgid "Назад"
+msgstr "Back"
+
+#: main.py:2125
+msgid "<b>🌇 Выберите город:</b>"
+msgstr "<b>Select city:</b>"
+
+#: main.py:2143
+msgid "Ошибка: в этом городе нет данных о улицах."
+msgstr "Error: no street data available in this city."
+
+#: main.py:2157
+msgid "Нет номеров"
+msgstr "No numbers"
+
+#: main.py:2161
+msgid "Местоположение"
+msgstr "Location"
+
+#: main.py:2270
+msgid "sel_traffic"
+msgstr "Select departure country"
+
+#: main.py:2274
+msgid "send-us"
+msgstr "🇺🇸USA →"
+
+#: main.py:2275
+msgid "send-uz"
+msgstr "🇺🇿UZB →"
+
+#: main.py:2278
+msgid "send-canada"
+msgstr "🇨🇦Canada →"
+
+#: main.py:2300 main.py:2406 main.py:2498 main.py:2514
+msgid "sel_rec_coun"
+msgstr "Select your country of receipt"
+
+#: main.py:2303
+msgid "send-us_rec-uz"
+msgstr "→ 🇺🇿UZB"
+
+#: main.py:2304
+msgid "send-us_rec-tjk"
+msgstr "→ 🇹🇯TJK"
+
+#: main.py:2305 main.py:2411 main.py:2503 main.py:2518
+msgid "trf-oth-cn"
+msgstr "Other countries"
+
+#: main.py:2325
+msgid "Наши социальные сети"
+msgstr "Our social networks"
+
+#: main.py:2333
+msgid "🇺🇸США → 🇺🇿УЗБ"
+msgstr "🇺🇸USA → 🇺🇿UZB"
+
+#: main.py:2334 main.py:2424 main.py:2488 main.py:2528 main.py:2538
+#: main.py:2548
+msgid "Стандарт"
+msgstr "Standard"
+
+#: main.py:2335
+msgid "Цена стандарт США-Узб"
+msgstr "Price: $9.0 per 1kg (Minimum 3kg)"
+
+#: main.py:2336
+msgid "Стандарт Сша-Узб Доставка"
+msgstr "Delivery within: 5-15 days from the date of shipment"
+
+#: main.py:2338 main.py:2428
+msgid "Экспресс"
+msgstr "Express"
+
+#: main.py:2339
+msgid "Цена экспресс сша-узб"
+msgstr "Price: $18.0 per 1kg (Minimum: 1kg)"
+
+#: main.py:2340
+msgid "Доставка экспресс сша-узб"
+msgstr "Delivery within: 2-5 days from the date of shipment"
+
+#: main.py:2342
+msgid "экс-ком-сша-уз"
+msgstr "Express commercial"
+
+#: main.py:2343
+msgid "экс-ком-цен-сша-уз"
+msgstr "Price: $20.0 per 1kg (Minimum: 1kg)"
+
+#: main.py:2344
+msgid "экс-ком-дост-сша-уз"
+msgstr "Delivery within: 2-10 days from the date of shipment"
+
+#: main.py:2346
+msgid "Ground-us-uz"
+msgstr "Standard commercial"
+
+#: main.py:2347
+msgid "Цена эконом сша-узб"
+msgstr "Price: $15.0 per 1kg (Minimum: 3kg)"
+
+#: main.py:2348
+msgid "Доставка эконом сша-узб"
+msgstr "Delivery within: 5-15 days from the date of shipment"
+
+#: main.py:2350
+msgid "send_usa-rec_uz_economy"
+msgstr "Economy"
+
+#: main.py:2351
+msgid "send_usa-rec_uz_economy_price"
+msgstr "Price: $6.99 per 1kg (Minimum: 10kg)"
+
+#: main.py:2352
+msgid "send_usa-rec_uz_economy_deliver"
+msgstr "Delivery within: 14-21 days from the date of shipment"
+
+#: main.py:2357 main.py:2448
+msgid "Подробнее"
+msgstr ""
+
+#: main.py:2371
+msgid "economy_send-usa_rec-uz"
+msgstr ""
+"📦 Price: 6.99 USD per 1 kg. Minimum shipment weight — 10 kg.\n"
+"\n"
+"⏱️ Delivery time: From 14 to 21 days from the actual shipping date.\n"
+"\n"
+"🧾 Description: The “Economy” tariff is an excellent choice for those who "
+"want to send packages from the USA to Uzbekistan at the most affordable "
+"rate. Thanks to optimized logistics and cargo consolidation, you receive "
+"reliable delivery without overpaying. All shipments go through careful "
+"sorting and secure packaging to ensure the safety of your items "
+"throughout the entire journey.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– You send or bring your package to our warehouse in the USA;\n"
+"– After consolidation, the cargo is shipped to Uzbekistan;\n"
+"– The delivery countdown starts from the moment of actual shipment;\n"
+"– Upon arrival in Uzbekistan, the package goes through the required "
+"procedures and is transferred to the pick-up point or courier (if "
+"available in your city).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Those who want to save on shipping large or medium-sized packages;\n"
+"– Buyers of clothing, accessories, home goods, and other light items;\n"
+"– Anyone sending gifts, personal belongings, or small batches of goods.\n"
+
+#: main.py:2378
+msgid "rate_standard_send-us_rec-uz"
+msgstr ""
+"📦 Cost: 9.0 USD per 1 kg. Minimum shipment weight — 3 kg.\n"
+"\n"
+"⏱️ Delivery time: From 5 to 15 days from the actual shipment date.\n"
+"\n"
+"🧾 Tariff description: The “Standard” tariff is an optimal solution for "
+"those who want to receive a package from the USA to Uzbekistan quickly "
+"and at an affordable price. All shipments go through careful sorting and "
+"reliable packaging, ensuring the safety of your items throughout the "
+"entire journey.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– You send your package to our warehouse in the USA.\n"
+"– After consolidation and shipment, the delivery countdown begins.\n"
+"– The package goes through customs procedures and is sent to Uzbekistan.\n"
+"– Upon arrival, you can pick it up at our office or via courier (if "
+"available in your city).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Customers who shop in American online stores;\n"
+"– Those ordering electronics, clothing, accessories, and other goods;\n"
+"– Regular shipments and personal packages."
+
+#: main.py:2385
+msgid "rate_express_send-us_rec-uz"
+msgstr ""
+"📦 Cost: 18.0 USD per 1 kg. Minimum shipment weight — 1 kg.\n"
+"\n"
+"⏱️ Delivery time: From 2 to 5 days from the actual shipment date.\n"
+"\n"
+"🧾 Tariff description: The “Express” tariff is designed for those who "
+"value maximum speed. This is the fastest way to receive a package from "
+"the USA to Uzbekistan. Shipments are processed with priority, go through "
+"accelerated logistics stages, and are delivered in the shortest possible "
+"time.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The package is received at our warehouse in the USA and immediately "
+"prepared for expedited shipment.\n"
+"– After shipment, the delivery countdown begins — just a few days.\n"
+"– The package quickly goes through customs procedures.\n"
+"– It is delivered to Uzbekistan and becomes available for pickup or "
+"courier delivery (depending on the city).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Those who want to receive their goods as fast as possible;\n"
+"– When ordering valuable, urgent, or important packages;\n"
+"– For fast delivery of documents, electronics, and premium items."
+
+#: main.py:2392
+msgid "rate_ground_send-us_rec-uz"
+msgstr ""
+"📦 Cost: 15.0 USD per 1 kg. Minimum shipment weight — 3 kg.\n"
+"\n"
+"⏱️ Delivery time: From 5 to 15 days from the actual shipment date.\n"
+"\n"
+"🧾 Tariff description: The “Standard Commercial” tariff is designed "
+"specifically for entrepreneurs, online stores, and those who regularly "
+"ship large batches of goods from the USA. It combines an affordable price"
+" with stable delivery times, providing reliable logistics for commercial "
+"cargo.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The cargo arrives at our warehouse in the USA and goes through sorting."
+"\n"
+"– After shipment, the delivery countdown begins.\n"
+"– Packages go through customs procedures and are sent to Uzbekistan.\n"
+"– They are ready for pickup at our office or via courier (depending on "
+"the city).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Small and medium-sized businesses;\n"
+"– Online sellers and resellers;\n"
+"– Deliveries of clothing, accessories, electronics, and other commercial "
+"goods."
+
+#: main.py:2399
+msgid "rate_express2_send-us_rec-uz"
+msgstr ""
+"📦 Cost: 20.0 USD per 1 kg. Minimum shipment weight — 1 kg.\n"
+"\n"
+"⏱️ Delivery time: From 2 to 10 days from the actual shipment date.\n"
+"\n"
+"🧾 Tariff description: The “Express Commercial” tariff is a high-speed "
+"solution for entrepreneurs and companies who need to receive goods from "
+"the USA as quickly as possible. Shipments receive priority processing, "
+"accelerated logistics, and are delivered within a short timeframe, making"
+" it ideal for dynamic businesses.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The goods arrive at our warehouse in the USA and are immediately "
+"prepared for express shipment.\n"
+"– After dispatch, the delivery countdown begins — just a few days.\n"
+"– The cargo goes through expedited customs procedures.\n"
+"– It arrives in Uzbekistan, where it becomes available for pickup or "
+"courier delivery (if supported in your city).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Businesses with fast product turnover;\n"
+"– Online stores and resellers;\n"
+"– Urgent delivery of electronics, clothing, accessories, and other "
+"commercial goods."
+
+#: main.py:2409
+msgid "send-uz_rec-us"
+msgstr "→ 🇺🇸USA"
+
+#: main.py:2410
+msgid "send-uz_rec-tjk"
+msgstr "→🇹🇯TJK"
+
+#: main.py:2421
+msgid "🇺🇿УЗБ → 🇺🇸США"
+msgstr "🇺🇿UZB → 🇺🇸USA"
+
+#: main.py:2425
+msgid "price_uz_standart"
+msgstr "Price: $12 per 1kg (Minimum: 3kg)"
+
+#: main.py:2426
+msgid "Доставка Узб-Сша Стандарт"
+msgstr "Delivery within: 5-15 days from the date of shipment"
+
+#: main.py:2429
+msgid "Цена экспресс Узб-Сша"
+msgstr "Price: $18.0 per 1kg (Minimum: 1kg)"
+
+#: main.py:2430
+msgid "Доставка экспресс Узб-Сша"
+msgstr "Delivery within: 2-5 days from the date of shipment"
+
+#: main.py:2432
+msgid "standart_com_uz_usa"
+msgstr "Standart commercial"
+
+#: main.py:2433
+msgid "price_st_com_uz_usa"
+msgstr "Price: $15 per 1kg (Minimum: 3kg)"
+
+#: main.py:2434
+msgid "delivery_st_com_uz_usa"
+msgstr "Delivery within: 5-15 days from the date of shipment"
+
+#: main.py:2436
+msgid "express_com_uz_usa"
+msgstr "Express commercial"
+
+#: main.py:2437
+msgid "price_ex_com_uz_usa"
+msgstr "Price: $20 per 1kg (Minimum: 1kg)"
+
+#: main.py:2438
+msgid "delivery_ex_com_uz_usa"
+msgstr "Delivery within: 2-10 days from the date of shipment"
+
+#: main.py:2440
+msgid "Ground"
+msgstr "Container"
+
+#: main.py:2441
+msgid "Эконом Узб-Сша"
+msgstr "Price: $1.99-$5.49 per 1kg (Minimum: 100kg)"
+
+#: main.py:2442
+msgid "Доставка эконом узб-сша"
+msgstr "Delivery within: 45-60 days from the date of shipment"
+
+#: main.py:2462
+msgid "price_uz_standart_detail"
+msgstr ""
+"📦 Cost: 12.0 USD per 1 kg. Minimum shipment weight — 3 kg.\n"
+"\n"
+"⏱️ Delivery time: 5 to 15 days from the actual shipping date.\n"
+"\n"
+"🧾 Tariff description: The “Standard” tariff is the optimal solution for "
+"those who want to send a parcel from Uzbekistan to the USA reliably and "
+"at an affordable price. All shipments are carefully sorted and securely "
+"packed, ensuring the safety of your items throughout the delivery "
+"process.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– You hand over the parcel to our warehouse in Uzbekistan.\n"
+"– After consolidation and shipment, the delivery time countdown starts.\n"
+"– The parcel goes through customs procedures and transportation to the "
+"USA.\n"
+"– The recipient can pick it up at the pickup point or order courier "
+"delivery (if available in the region).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Sending personal and commercial parcels;\n"
+"– Ordering clothes, accessories, electronics, and other goods;\n"
+"– Reliable and affordable delivery to the USA."
+
+#: main.py:2467
+msgid "rate_express_send-uz_rec-us"
+msgstr ""
+"📦 Cost: 18.0 USD per 1 kg. Minimum shipment weight — 1 kg.\n"
+"\n"
+"⏱️ Delivery time: 2 to 5 days from the actual shipping date.\n"
+"\n"
+"🧾 Tariff description: The “Express” tariff is designed for those who "
+"value maximum delivery speed from Uzbekistan to the USA. Parcels are "
+"processed with priority, go through accelerated logistics steps, and are "
+"delivered in the shortest possible time, making this tariff ideal for "
+"urgent shipments.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The parcel is accepted at our warehouse in Uzbekistan and immediately "
+"prepared for express shipping.\n"
+"– After shipment, the delivery time countdown starts — just a few days.\n"
+"– The parcel goes through accelerated customs procedures.\n"
+"– Upon arrival in the USA, the recipient can pick it up at the pickup "
+"point or order courier delivery (if available in the region).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Those who want to receive their parcel as quickly as possible;\n"
+"– Sending valuable, urgent, or important goods;\n"
+"– Fast delivery of electronics, clothes, accessories, and other parcels."
+
+#: main.py:2472
+msgid "price_st_com_uz_usa_detail"
+msgstr ""
+"📦 Cost: 15.0 USD per 1 kg. Minimum shipment weight — 3 kg.\n"
+"\n"
+"⏱️ Delivery time: 5 to 15 days from the actual shipping date.\n"
+"\n"
+"🧾 Tariff description: The “Standard Commercial” tariff is specially "
+"designed for entrepreneurs, online stores, and those who regularly send "
+"large batches of goods from Uzbekistan to the USA. It combines a "
+"favorable price and stable delivery times, ensuring reliable logistics "
+"for commercial shipments.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The goods arrive at our warehouse in Uzbekistan and are sorted.\n"
+"– After shipment, the delivery time countdown starts.\n"
+"– Parcels go through customs procedures and transportation to the USA.\n"
+"– Ready for pickup at the pickup point or courier delivery (depending on "
+"the region).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Small and medium businesses;\n"
+"– Online sellers and resellers;\n"
+"– Sending clothes, accessories, electronics, and other commercial goods."
+
+#: main.py:2477
+msgid "price_ex_com_uz_usa_detail"
+msgstr ""
+"📦 Cost: 20.0 USD per 1 kg. Minimum shipment weight — 1 kg.\n"
+"\n"
+"⏱️ Delivery time: 2 to 10 days from the actual shipping date.\n"
+"\n"
+"🧾 Tariff description: The “Express Commercial” tariff is a high-speed "
+"solution for entrepreneurs and companies who need to receive goods from "
+"Uzbekistan to the USA as quickly as possible. Shipments are processed "
+"with priority, go through accelerated logistics, and are delivered in a "
+"short time, which is ideal for dynamic businesses.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– Goods arrive at the warehouse in Uzbekistan and are immediately "
+"prepared for express shipment.\n"
+"– After shipment, the delivery countdown starts — just a few days.\n"
+"– The goods go through accelerated customs procedures.\n"
+"– Upon arrival in the USA, the recipient can pick them up at the pickup "
+"point or order courier delivery (if available in the region).\n"
+"\n"
+"💡 Suitable for:\n"
+"– Businesses with fast product turnover;\n"
+"– Online stores and resellers;\n"
+"– Urgent delivery of electronics, clothes, accessories, and other "
+"commercial goods."
+
+#: main.py:2482
+msgid "rate_ground_send-uz_rec-us"
+msgstr ""
+"📦 Cost: 1.99–5.49 USD per 1 kg. Minimum shipment weight — 100 kg.\n"
+"\n"
+"⏱️ Delivery time: 45 to 60 days from the actual shipping date.\n"
+"\n"
+"🧾 Tariff description: The “Container” tariff is designed for large cargo "
+"shipments from Uzbekistan to the USA. It is ideal for sending large "
+"batches of goods or bulk orders. Despite the long delivery time, the "
+"tariff ensures reliable logistics and cargo safety along the entire "
+"route.\n"
+"\n"
+"🚚 How delivery works:\n"
+"– The cargo arrives at the warehouse and undergoes preliminary sorting "
+"and packing.\n"
+"– Container shipment is carried out via sea transport.\n"
+"– The cargo goes through customs procedures and transportation to the "
+"USA.\n"
+"– Upon arrival in the USA, the recipient can pick up the container at the"
+" pickup point or request further delivery to the address.\n"
+"\n"
+"💡 Suitable for:\n"
+"– Large commercial shipments and bulk orders;\n"
+"– Businesses that work with large volumes of goods;\n"
+"– Those planning cost-effective shipments of large cargoes, prepared to "
+"wait 1.5–2 months."
+
+#: main.py:2487
+msgid "🇨🇦УЗБ → 🇺🇿ТЖК"
+msgstr "🇺🇿UZB → 🇹🇯TJK"
+
+#: main.py:2489
+msgid "Цена стандарт Узб-Тжк"
+msgstr "Price: 10.0$ per 1kg (Minimum 3kg)"
+
+#: main.py:2490
+msgid "Стандарт Узб-Тжк Доставка"
+msgstr "Delivery within: 6-7 working days"
+
+#: main.py:2501
+msgid "send-canada-accept-uz"
+msgstr "→🇺🇿UZB"
+
+#: main.py:2502
+msgid "send-canada-accept-tj"
+msgstr "→🇹🇯TJK"
+
+#: main.py:2517
+msgid "send-tjk-accept-usa"
+msgstr "→ 🇺🇸USA"
+
+#: main.py:2527
+msgid "🇨🇦Канада → 🇺🇿УЗБ"
+msgstr "🇨🇦Canada → 🇺🇿UZB"
+
+#: main.py:2529
+msgid "Цена стандарт Канада-Узб"
+msgstr "Price: 13$ CAD per 1kg (Minimum 5kg)"
+
+#: main.py:2530
+msgid "Стандарт Канада-Узб Доставка"
+msgstr "Delivery within: 5-15 working days"
+
+#: main.py:2537
+msgid "🇺🇸США → 🇹🇯ТЖК"
+msgstr "🇺🇸USA → 🇹🇯TJK"
+
+#: main.py:2539
+msgid "Цена стандарт США-ТЖК"
+msgstr "Price: 11.99$ per 1kg (Minimum 3kg)"
+
+#: main.py:2540
+msgid "Стандарт США-ТЖК Доставка"
+msgstr "Delivery within: 14-21 working days"
+
+#: main.py:2547
+msgid "🇨🇦Канада → 🇹🇯ТЖК"
+msgstr "🇨🇦Canada → 🇹🇯TJK"
+
+#: main.py:2549
+msgid "Цена стандарт Канада-ТЖК"
+msgstr "Price: 16.49$ per 1kg (Minimum 3kg)"
+
+#: main.py:2550
+msgid "Стандарт Канада-ТЖК Доставка"
+msgstr "Delivery within: 5-15 working days"
+
+#: main.py:2557
+msgid "Следите за новостями скоро будут и в других странах"
+msgstr "Stay tuned for news, soon to be in other countries too."
+
+#: main.py:2573
+msgid "Пожалуйста, напишите ваше сообщение!"
+msgstr "Please write your message!"
+
+#: main.py:2591
+msgid "Ваше сообщение передано, ждите ответ от службы поддержки клиентов!"
+msgstr ""
+"Your message has been forwarded, please wait for a response from customer"
+" support!"
+
+#: main.py:2604
+msgid "Сообщение от поддержки!"
+msgstr "Message from support!"
+
+#~ msgid "Доставка Узб-Сша(стандарт)"
+#~ msgstr ""
+
+#~ msgid "Стандарт Сша-Узб Цена"
+#~ msgstr ""
+
+#~ msgid "Доставка в течении: 5-10 рабочих дней"
+#~ msgstr "Delivery within: 15-25 business days"
+
+#~ msgid "pr_gr_uz"
+#~ msgstr "Price: $8.79+ per 1kg"
+
+#~ msgid "Цена: 7.5$ за 1кг"
+#~ msgstr "Price: 7.5$ per 1kg"
+
+#~ msgid "Цена2"
+#~ msgstr "Price: $15 per 1kg"
+
+#~ msgid "Доставка1-3"
+#~ msgstr "Delivery1-3"
+
+#~ msgid "ground_price"
+#~ msgstr "Price: $4+ per 1kg"
+
+#~ msgid "gr_del"
+#~ msgstr "Delivery within: 7-15 working days"
+
+#~ msgid "gr_delive"
+#~ msgstr "Delivery within: 15-25 working days"
+
+#~ msgid "send-tjk"
+#~ msgstr "🇹🇯TJK →"
+
+#~ msgid "экс-ком"
+#~ msgstr "Commercial express"
+
+#~ msgid "price_express_detail"
+#~ msgstr ""
+
+#~ msgid "ground_detail"
+#~ msgstr "Container"
+
+#~ msgid "Приблизительная дата прибытия"
+#~ msgstr "Estimated date of arrival: "
+
+#~ msgid "📄 Тарифы2"
+#~ msgstr "📃 Rates"
+
+#~ msgid "Выберите страну отправителя:"
+#~ msgstr ""
+
