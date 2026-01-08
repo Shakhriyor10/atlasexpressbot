@@ -266,19 +266,30 @@ async def orm_add_tariff(
     from_country_id: int,
     to_country_id: int,
     category_id: int,
-    price: str,
+    price_ru: str,
+    price_en: str,
+    price_uz: str,
     delivery_text_ru: str,
     delivery_text_en: str,
     delivery_text_uz: str,
+    description_ru: str,
+    description_en: str,
+    description_uz: str,
 ):
     tariff = Tariff(
         from_country_id=from_country_id,
         to_country_id=to_country_id,
         category_id=category_id,
-        price=price,
+        price=price_ru,
+        price_ru=price_ru,
+        price_en=price_en,
+        price_uz=price_uz,
         delivery_text_ru=delivery_text_ru,
         delivery_text_en=delivery_text_en,
         delivery_text_uz=delivery_text_uz,
+        description_ru=description_ru,
+        description_en=description_en,
+        description_uz=description_uz,
     )
     session.add(tariff)
     await session.commit()

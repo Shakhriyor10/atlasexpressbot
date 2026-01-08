@@ -107,6 +107,12 @@ class Tariff(Base):
     category: Mapped["TariffCategory"] = relationship()
 
     price: Mapped[str]               # строка "6.99$ за кг"
+    price_ru: Mapped[str | None]
+    price_en: Mapped[str | None]
+    price_uz: Mapped[str | None]
     delivery_text_ru: Mapped[str]
     delivery_text_en: Mapped[str]
     delivery_text_uz: Mapped[str]
+    description_ru: Mapped[str | None]
+    description_en: Mapped[str | None]
+    description_uz: Mapped[str | None]
