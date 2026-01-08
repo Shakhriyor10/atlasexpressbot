@@ -217,7 +217,7 @@ async def get_tariffs_for_route(
             selectinload(Tariff.from_country),
             selectinload(Tariff.to_country),
         )
-        .order_by(Tariff.id)
+        .order_by(desc(Tariff.position), Tariff.id)
     )
     result = await session.execute(stmt)
     return result.scalars().all()
@@ -266,6 +266,7 @@ async def orm_add_tariff(
     from_country_id: int,
     to_country_id: int,
     category_id: int,
+    position: int,
     price_ru: str,
     price_en: str,
     price_uz: str,
@@ -280,6 +281,7 @@ async def orm_add_tariff(
         from_country_id=from_country_id,
         to_country_id=to_country_id,
         category_id=category_id,
+        position=position,
         price=price_ru,
         price_ru=price_ru,
         price_en=price_en,
@@ -293,6 +295,19 @@ async def orm_add_tariff(
     )
     session.add(tariff)
     await session.commit()
+
+
+async def orm_update_tariff_position(
+    session: AsyncSession, tariff_id: int, position: int
+):
+    try:
+        result = await session.execute(select(Tariff).where(Tariff.id == tariff_id))
+        tariff = result.scalar_one()
+        tariff.position = position
+        await session.commit()
+        return True
+    except NoResultFound:
+        return False
 
 
 # изменение
@@ -451,3 +466,14 @@ async def orm_delete_district(session: AsyncSession, district_id: int):
 
     except NoResultFound:
         return False  # Город не найден
+
+
+async def orm_delete_tariff(session: AsyncSession, tariff_id: int):
+    try:
+        result = await session.execute(select(Tariff).where(Tariff.id == tariff_id))
+        tariff = result.scalar_one()
+        await session.delete(tariff)
+        await session.commit()
+        return True
+    except NoResultFound:
+        return False

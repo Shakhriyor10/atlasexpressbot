@@ -94,6 +94,7 @@ class Tariff(Base):
     __tablename__ = "tariffs"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    position: Mapped[int] = mapped_column(default=1)
 
     # Страна отправитель
     from_country_id: Mapped[int] = mapped_column(ForeignKey("countries.id"))
