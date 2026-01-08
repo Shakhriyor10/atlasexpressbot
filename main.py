@@ -2361,22 +2361,13 @@ async def show_users(message: Message):
 @dp.message(F.text == __("📃 Тарифы"))
 async def rates(message: types.Message, state: FSMContext):
     if is_admin_user(message.from_user.id):
-        await message.answer(
-            _("sel_traffic"),
-            reply_markup=types.ReplyKeyboardMarkup(
-                keyboard=[[types.KeyboardButton(text=_("❌ Отмена"))]],
-                resize_keyboard=True,
-            ),
-        )
         kb = InlineKeyboardBuilder()
         kb.button(
             text="⚙️ Управление тарифами",
             callback_data=TariffAdminActionCallback(action="menu").pack(),
         )
         await message.answer("Админ: управление тарифами", reply_markup=kb.as_markup())
-        await show_tariff_from_countries(message, page=0)
-    else:
-        await show_tariff_from_countries_reply(message, state)
+    await show_tariff_from_countries_reply(message, state)
     data = {
         "name": message.from_user.first_name,
         "username": message.from_user.username,
